@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation – Zohan & Rose</title>
+  <meta name="description" content="Undangan pernikahan digital Zohan & Rose – 27 September 2026. Bergabunglah bersama kami merayakan momen terindah dalam hidup kami." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="envelope.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     ENVELOPE INTRO — video amplop terbuka.
+     Diam dulu (paused). Ketuk untuk memulai.
+     Detik terakhir fade-out sampai hilang.
+══════════════════════════════════════════ -->
+<div id="envelope-intro">
+  <video id="envelope-video" preload="auto" playsinline muted>
+    <source src="assets/amplop terbuka.mp4" type="video/mp4" />
+  </video>
+  <button id="envelope-tap" aria-label="Buka undangan">
+    <span class="tap-pulse"></span>
+    <span class="tap-text">Ketuk untuk membuka</span>
+  </button>
+</div>
+
+<div id="app-wrapper">
+
+  <!-- ══════════════════════════════════════════
+       HERO / COVER SECTION
+  ══════════════════════════════════════════ -->
+  <section id="cover" class="cover-section">
+
+    <!-- Background: video (menggantikan angsa love + pilar gerbang) -->
+    <div class="cover-bg">
+      <video src="assets/video background.mp4" autoplay loop muted playsinline></video>
+    </div>
+
+    <!-- Particle petals floating -->
+    <div class="petals-container" id="petals"></div>
+
+    <!-- Content inside the arch -->
+    <div class="cover-content">
+      <p class="cover-label">Wedding Day</p>
+      <p class="cover-date">27 . 09 . 26</p>
+
+      <div class="cover-divider">
+        <span></span><span class="divider-icon">✦</span><span></span>
+      </div>
+
+      <h1 class="cover-names">
+        <span class="name-groom">Zohan</span>
+        <span class="name-amp">&amp;</span>
+        <span class="name-bride">Rose</span>
+      </h1>
+
+      <a href="#greeting" class="scroll-hint" id="scroll-hint-btn">
+        <span class="scroll-text">Scroll down</span>
+        <span class="scroll-chevron">&#8964;</span>
+      </a>
+    </div>
+
+
+
+
+    <!-- Music toggle -->
+    <button class="music-btn" id="music-btn" title="Toggle music" aria-label="Toggle background music">
+      <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" style="display:none">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+      </svg>
+    </button>
+    <audio id="bg-music" loop>
+      <!-- Pasang file musik di sini jika tersedia -->
+      <!-- <source src="music.mp3" type="audio/mpeg" /> -->
+    </audio>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       DECOR-13: Kertas robek — transisi cover → greeting
+       Menumpuk di atas cover, di bawah bunga sudut
+  ══════════════════════════════════════════ -->
+  <div class="paper-tear" aria-hidden="true">
+    <img src="assets/decor-13.png" alt="" />
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       GREETING SECTION
+  ══════════════════════════════════════════ -->
+  <section id="greeting" class="section greeting-section">
+    <div class="section-inner reveal">
+      <div class="ornament-top">❧</div>
+      <p class="section-subtitle">Bismillahirrahmanirrahim</p>
+      <h2 class="section-title">Assalamu'alaikum<br/>Warahmatullahi Wabarakatuh</h2>
+      <div class="separator"></div>
+      <p class="greeting-text">
+        Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i
+        untuk hadir dan memberikan do'a restu pada acara pernikahan putra-putri kami:
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       COUPLE SECTION
+  ══════════════════════════════════════════ -->
+  <section id="couple" class="section couple-section">
+    <div class="couple-bg-overlay"></div>
+    <div class="section-inner">
+
+      <div class="couple-card reveal">
+        <div class="couple-photo-wrap">
+          <div class="couple-photo placeholder-photo groom-photo">
+            <div class="photo-initial">Z</div>
+          </div>
+        </div>
+        <h3 class="couple-name">Zohan Al-Farisi</h3>
+        <p class="couple-role">Putra Pertama dari</p>
+        <p class="couple-parents">Bpk. Ahmad & Ibu Siti Aminah</p>
+      </div>
+
+      <div class="couple-ampersand reveal">
+        <span class="amp-symbol">&amp;</span>
+        <div class="amp-rings">💍</div>
+      </div>
+
+      <div class="couple-card reveal">
+        <div class="couple-photo-wrap">
+          <div class="couple-photo placeholder-photo bride-photo">
+            <div class="photo-initial">R</div>
+          </div>
+        </div>
+        <h3 class="couple-name">Rose Kharisma</h3>
+        <p class="couple-role">Putri Pertama dari</p>
+        <p class="couple-parents">Bpk. Hendra & Ibu Dewi Lestari</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       COUNTDOWN SECTION
+  ══════════════════════════════════════════ -->
+  <section id="countdown" class="section countdown-section">
+    <div class="section-inner reveal">
+      <div class="ornament-top">❧</div>
+      <p class="section-subtitle">Menuju Hari Bahagia</p>
+      <h2 class="section-title">27 September 2026</h2>
+      <div class="separator"></div>
+      <div class="countdown-grid" id="countdown-grid">
+        <div class="countdown-item">
+          <span class="countdown-num" id="cd-days">00</span>
+          <span class="countdown-label">Hari</span>
+        </div>
+        <div class="countdown-dot">:</div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="cd-hours">00</span>
+          <span class="countdown-label">Jam</span>
+        </div>
+        <div class="countdown-dot">:</div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="cd-minutes">00</span>
+          <span class="countdown-label">Menit</span>
+        </div>
+        <div class="countdown-dot">:</div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="cd-seconds">00</span>
+          <span class="countdown-label">Detik</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       EVENT SECTION
+  ══════════════════════════════════════════ -->
+  <section id="event" class="section event-section">
+    <div class="section-inner">
+
+      <div class="event-header reveal">
+        <div class="ornament-top">❧</div>
+        <p class="section-subtitle">Rangkaian Acara</p>
+        <h2 class="section-title">Jadwal Pernikahan</h2>
+        <div class="separator"></div>
+      </div>
+
+      <div class="event-cards">
+
+        <div class="event-card reveal">
+          <div class="event-icon">🌸</div>
+          <h3 class="event-name">Akad Nikah</h3>
+          <div class="event-detail">
+            <p class="event-datetime">Minggu, 27 September 2026</p>
+            <p class="event-time">08.00 – 10.00 WIB</p>
+            <p class="event-venue">Masjid Al-Ikhlas</p>
+            <p class="event-address">Jl. Mawar No. 12, Jakarta Selatan</p>
+          </div>
+          <a href="https://maps.google.com" target="_blank" class="btn-map" id="map-akad-btn">
+            📍 Lihat Lokasi
+          </a>
+        </div>
+
+        <div class="event-card reveal">
+          <div class="event-icon">🦢</div>
+          <h3 class="event-name">Resepsi</h3>
+          <div class="event-detail">
+            <p class="event-datetime">Minggu, 27 September 2026</p>
+            <p class="event-time">11.00 – 15.00 WIB</p>
+            <p class="event-venue">Grand Ballroom Angkasa</p>
+            <p class="event-address">Jl. Kenanga No. 88, Jakarta Selatan</p>
+          </div>
+          <a href="https://maps.google.com" target="_blank" class="btn-map" id="map-resepsi-btn">
+            📍 Lihat Lokasi
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       GALLERY SECTION
+  ══════════════════════════════════════════ -->
+  <section id="gallery" class="section gallery-section">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="ornament-top">❧</div>
+        <p class="section-subtitle">Momen Bersama</p>
+        <h2 class="section-title">Galeri Foto</h2>
+        <div class="separator"></div>
+      </div>
+      <div class="gallery-grid reveal">
+        <!-- Placeholder gallery items – ganti dengan foto asli -->
+        <div class="gallery-item" style="--delay:0s"><div class="gallery-placeholder">📷</div></div>
+        <div class="gallery-item" style="--delay:.1s"><div class="gallery-placeholder">📷</div></div>
+        <div class="gallery-item" style="--delay:.2s"><div class="gallery-placeholder">📷</div></div>
+        <div class="gallery-item" style="--delay:.3s"><div class="gallery-placeholder">📷</div></div>
+        <div class="gallery-item" style="--delay:.4s"><div class="gallery-placeholder">📷</div></div>
+        <div class="gallery-item" style="--delay:.5s"><div class="gallery-placeholder">📷</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       LOVE STORY SECTION
+  ══════════════════════════════════════════ -->
+  <section id="lovestory" class="section lovestory-section">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="ornament-top">❧</div>
+        <p class="section-subtitle">Perjalanan Cinta</p>
+        <h2 class="section-title">Our Love Story</h2>
+        <div class="separator"></div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item left reveal">
+          <div class="timeline-content">
+            <span class="timeline-year">2020</span>
+            <h4>Pertama Bertemu</h4>
+            <p>Pertemuan pertama yang tak terduga di sebuah seminar di Jakarta. Sebuah tatapan yang mengubah segalanya.</p>
+          </div>
+        </div>
+        <div class="timeline-item right reveal">
+          <div class="timeline-content">
+            <span class="timeline-year">2022</span>
+            <h4>Menjalin Kasih</h4>
+            <p>Dua hati yang saling menemukan, memulai perjalanan indah bersama dalam suka dan duka.</p>
+          </div>
+        </div>
+        <div class="timeline-item left reveal">
+          <div class="timeline-content">
+            <span class="timeline-year">2025</span>
+            <h4>Lamaran</h4>
+            <p>Dengan segenap cinta dan restu keluarga, langkah nyata menuju kehidupan baru dimulai.</p>
+          </div>
+        </div>
+        <div class="timeline-item right reveal">
+          <div class="timeline-content">
+            <span class="timeline-year">2026</span>
+            <h4>Pernikahan</h4>
+            <p>Menyempurnakan separuh agama, membangun rumah tangga yang sakinah, mawaddah, warahmah.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       RSVP / UCAPAN SECTION
+  ══════════════════════════════════════════ -->
+  <section id="rsvp" class="section rsvp-section">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="ornament-top">❧</div>
+        <p class="section-subtitle">Konfirmasi Kehadiran</p>
+        <h2 class="section-title">RSVP & Ucapan</h2>
+        <div class="separator"></div>
+      </div>
+
+      <form class="rsvp-form reveal" id="rsvp-form" onsubmit="submitRSVP(event)">
+        <div class="form-group">
+          <label for="rsvp-name">Nama Lengkap</label>
+          <input type="text" id="rsvp-name" placeholder="Masukkan nama Anda" required />
+        </div>
+        <div class="form-group">
+          <label for="rsvp-attend">Kehadiran</label>
+          <select id="rsvp-attend" required>
+            <option value="">-- Pilih --</option>
+            <option value="hadir">Insya Allah Hadir</option>
+            <option value="tidak">Tidak Bisa Hadir</option>
+            <option value="mungkin">Mungkin Hadir</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="rsvp-message">Ucapan & Do'a</label>
+          <textarea id="rsvp-message" rows="4" placeholder="Sampaikan ucapan dan do'a terbaik Anda..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit" id="rsvp-submit-btn">Kirim Ucapan 💌</button>
+      </form>
+
+      <!-- Ucapan display -->
+      <div class="wishes-wall reveal" id="wishes-wall">
+        <div class="wish-card">
+          <div class="wish-avatar">A</div>
+          <div class="wish-body">
+            <strong>Arinda & Keluarga</strong>
+            <p>Selamat menempuh hidup baru! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Barokallahu lakuma. 🌸</p>
+            <span class="wish-attend hadir">Hadir</span>
+          </div>
+        </div>
+        <div class="wish-card">
+          <div class="wish-avatar">B</div>
+          <div class="wish-body">
+            <strong>Bintang Pratama</strong>
+            <p>Congrats!! Semoga langgeng selamanya dan selalu dalam lindungan Allah SWT. Aamiin. 🦢</p>
+            <span class="wish-attend hadir">Hadir</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CLOSING / FOOTER SECTION
+  ══════════════════════════════════════════ -->
+  <section id="closing" class="section closing-section">
+    <div class="closing-bg"></div>
+    <div class="closing-gate"></div>
+    <div class="section-inner closing-content reveal">
+      <div class="ornament-top" style="font-size:2rem">❧</div>
+      <p class="closing-arabic">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا</p>
+      <p class="closing-ayat">QS. Ar-Rum: 21</p>
+      <div class="separator"></div>
+      <h2 class="closing-names">Zohan &amp; Rose</h2>
+      <p class="closing-date">27 . 09 . 26</p>
+      <p class="closing-thanks">Terima kasih atas do'a dan kehadiran Anda.<br/>Kami sangat menantikan momen bersama Anda.</p>
+      <div class="closing-ornament">✦ ✦ ✦</div>
+    </div>
+  </section>
+
+</div><!-- /#app-wrapper -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     FLOWER OVERLAY — fixed ke viewport, di luar semua container
+     transform:translateZ(0) = paksa GPU layer = fix iOS Safari
+═══════════════════════════════════════════════════ -->
+<div id="flower-overlay" aria-hidden="true">
+  <img id="flower-left"  src="assets/decor-14.png" alt="" />
+  <img id="flower-right" src="assets/decor-10.png" alt="" />
+</div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="script.js"></script>
+  <script src="envelope.js"></script>
+</body>
+</html>

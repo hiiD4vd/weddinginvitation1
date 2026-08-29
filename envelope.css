@@ -1,0 +1,82 @@
+/* ══════════════════════════════════════════════════════════
+   ENVELOPE INTRO — video amplop terbuka di halaman awal.
+   Video diam (paused) → ketuk untuk play → detik terakhir
+   fade-out makin tipis sampai hilang → halaman utama tampil.
+══════════════════════════════════════════════════════════ */
+
+#envelope-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;   /* DI ATAS fixed-flowers (9998) — amplop tidak boleh ketutup bunga */
+  background: #F9F0E0;              /* SAMA dgn background body → tepi frame menyatu */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 1;
+  transform-origin: 50% 50%;
+  /* will-change ditambahkan JS saat dissolve, bukan default → agar tidak jebak fixed elemen lain */
+}
+
+/* Video amplop: sedikit lebih besar dari frame, utuh tidak terpotong */
+#envelope-video {
+  width: 100%;
+  max-width: 460px;                  /* sedikit lebih besar dari 430px sebelumnya */
+  height: 100svh;
+  object-fit: contain;              /* utuh — tidak ter-crop */
+  background: #F9F0E0;
+  display: block;
+}
+
+/* Tombol ketuk — full-screen tap area, tapi visual hanya pill di bawah */
+#envelope-tap {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 7vh;
+}
+
+.tap-text {
+  font-family: var(--ff-sans, 'Montserrat', sans-serif);
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-dark, #3a2e24);
+  background: rgba(253, 246, 237, 0.85);
+  border: 1px solid var(--gold, #b8882a);
+  border-radius: 999px;
+  padding: 14px 30px 14px 34px;
+  pointer-events: none;             /* klik tetap kena tombol parent */
+  box-shadow: 0 4px 20px rgba(90, 60, 30, 0.18);
+}
+
+/* Pulse ring di sekitar pill — isyarat "ketuk" */
+.tap-pulse {
+  position: absolute;
+  bottom: 6vh;
+  left: 50%;
+  width: 220px;
+  height: 56px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  border: 1px solid var(--gold, #b8882a);
+  opacity: 0;
+  animation: tapPulse 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes tapPulse {
+  0%   { transform: translateX(-50%) scale(0.9); opacity: 0.5; }
+  70%  { transform: translateX(-50%) scale(1.25); opacity: 0; }
+  100% { transform: translateX(-50%) scale(1.25); opacity: 0; }
+}
+
+/* Setelah play dimulai, tombol disembunyikan */
+#envelope-intro.playing #envelope-tap {
+  display: none;
+}

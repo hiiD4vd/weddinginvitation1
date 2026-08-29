@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viktor &amp; Paula - Wedding Day</title>
+  <meta name="description" content="Wedding Invitation - Viktor and Paula - 05.07.2026">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --burg: #66021f;
+      --burg2: #53021a;
+      --cream: #fcf9f5;
+      --pink: #d8b0c0;
+      --dark: #2d1520;
+      --mid: #5a3040;
+      --gold: #c49630;
+      --mw: 430px;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--burg);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      width: 100%;
+      max-width: var(--mw);
+      min-height: 100svh;
+      background: var(--burg);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: visible;
+      /* allow flowers to spill outside */
+    }
+
+    #hero-inner {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    #hv {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .ho {
+      position: absolute;
+      inset: 0;
+      background: rgba(60, 0, 15, .12);
+      z-index: 1
+    }
+
+    .hc {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      padding-top: 2.5rem;
+      width: 100%;
+    }
+
+    .htop {
+      text-align: center;
+      padding: 0 2rem
+    }
+
+    .hs {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.6rem;
+      display: block;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+    }
+
+    .hdate {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .92rem;
+      letter-spacing: .2em;
+      margin-top: .2rem;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, .5);
+    }
+
+    .hnames {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+    }
+
+    .hname {
+      font-family: 'Great Vibes', cursive;
+      font-size: 5.8rem;
+      line-height: 1.0;
+      text-shadow: 0 3px 20px rgba(0, 0, 0, .45);
+      display: block;
+    }
+
+    .hamp {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: rgba(255, 255, 255, .9);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+      display: block;
+    }
+
+    /* ================================================================
+       SUSUNAN BUNGA - MUDAH DIEDIT!
+       Setiap bunga punya:
+         width  = ukuran bunga
+         left   = posisi horizontal (% dari container)
+         bottom = posisi vertikal dari bawah (px)
+         rotate = kemiringan (derajat, + kanan, - kiri)
+       ================================================================ */
+    .hfl {
+      position: relative;
+      z-index: 3;
+      width: 170%;
+      margin-left: -30%;
+      /* lebar container bunga - edit untuk extend ke kiri/kanan */
+      height: 280px;
+      margin-top: auto;
+      flex-shrink: 0;
+    }
+
+    .hfl img {
+      position: absolute;
+      object-fit: contain;
+    }
+
+    /* === BUNGA MERAH 1 - Paling Kiri === */
+    .hfl .r1 {
+      width: 160px;
+      bottom: 35px;
+      left: 43%;
+      transform: rotate(30deg);
+      z-index: 6;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA MERAH 2 - bunga yg kecil ada daunnya === */
+    .hfl .r2 {
+      width: 200px;
+      bottom: 30px;
+      left: 62%;
+      transform: rotate(0deg);
+      z-index: 5;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA MERAH 3 - paling kiri === */
+    .hfl .r3 {
+      width: 140px;
+      bottom: 40px;
+      left: 23%;
+      transform: rotate(-5deg);
+      z-index: 2;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA MERAH 4 - Paling Kanan (DOMINAN, terbesar) === */
+    .hfl .r4 {
+      width: 260px;
+      bottom: 70px;
+      left: 65%;
+      transform: rotate(8deg);
+      z-index: 6;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA PUTIH 1 - Kiri Tengah === */
+    .hfl .w1 {
+      width: 100px;
+      bottom: 106px;
+      left: 38%;
+      transform: rotate(-12deg);
+      z-index: 1;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA PUTIH 2 - Tengah === */
+    .hfl .w2 {
+      width: 140px;
+      bottom: 22px;
+      left: 33%;
+      transform: rotate(3deg);
+      z-index: 5;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA PUTIH 3 - Kanan Tengah === */
+    .hfl .w3 {
+      width: 180px;
+      bottom: 60px;
+      left: 50%;
+      transform: rotate(-8deg);
+      z-index: 1;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* ===== SECTIONS ===== */
+    .sb {
+      width: 100%;
+      max-width: var(--mw);
+      background: var(--burg)
+    }
+
+    .sc {
+      width: 100%;
+      max-width: var(--mw);
+      background: var(--cream);
+      color: var(--dark)
+    }
+
+    /* ===== TORN PAPER ===== */
+    .torn {
+      width: 100%;
+      display: block;
+      line-height: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .torn img {
+      width: 150%;
+      max-width: none;
+      display: block;
+      margin-left: -25%;
+    }
+
+    /* Overlap: pastikan asset sobekan nempel rapat, tanpa celah sedikitpun
+       ke section di ATAS-nya (dipakai saat .torn jadi elemen PERTAMA
+       di dalam section yang backgroundnya beda dari section sebelumnya) */
+    .torn-overlap {
+      margin-top: -1px;
+    }
+
+    .hero-torn {
+      width: 100%;
+      display: block;
+      line-height: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .hero-torn img {
+      width: 150%;
+      max-width: none;
+      display: block;
+      margin-left: -25%;
+    }
+
+    .tf img {
+      transform: scaleY(-1)
+    }
+
+    /* ===== GREETING ===== */
+    #greeting {
+      text-align: center;
+      padding: 3rem 2.5rem 1.5rem
+    }
+
+    .gtitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 1.5rem
+    }
+
+    .gp {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--pink);
+      font-style: italic;
+      line-height: 1.85;
+      margin-bottom: 1.2rem
+    }
+
+    /* ===== COUNTDOWN ===== */
+    #countdown {
+      text-align: center;
+    }
+
+    .ctitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 1.5rem
+    }
+
+    .timer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center
+    }
+
+    .tu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 68px
+    }
+
+    .tn {
+      font-size: 4rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--dark)
+    }
+
+    .tu small {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .58rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: .35rem
+    }
+
+    .tc {
+      font-size: 3.6rem;
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1.05;
+      padding: 0 .1rem
+    }
+
+    /* ===== SCHEDULE ===== */
+    #schedule {
+      text-align: center;
+      padding: 3rem 2rem 3.5rem
+    }
+
+    .stitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 2.5rem
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      align-items: center
+    }
+
+    .te {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 310px;
+      padding: .8rem 0;
+      position: relative
+    }
+
+    .tt {
+      font-size: 1.8rem;
+      font-weight: 300;
+      min-width: 90px;
+      text-align: right;
+      letter-spacing: -.02em
+    }
+
+    .tnd {
+      width: 62px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      flex-shrink: 0
+    }
+
+    .tnd img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain
+    }
+
+    .tdm {
+      width: 11px;
+      height: 11px;
+      background: #fff;
+      transform: rotate(45deg)
+    }
+
+    .te:not(:last-child) .tnd::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 1.5rem;
+      background: rgba(255, 255, 255, .35)
+    }
+
+    .tl {
+      font-size: 1.1rem;
+      font-weight: 300;
+      text-align: left;
+      padding-left: .5rem;
+      flex: 1
+    }
+
+    /* ===== LOCATION ===== */
+    #location {
+      text-align: center;
+    }
+
+    .ltitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 1rem
+    }
+
+    .lvname {
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin-bottom: .5rem
+    }
+
+    .lvaddr {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--mid);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 1.5rem
+    }
+
+    .vsk {
+      width: 90%;
+      max-width: 360px;
+      display: block;
+      margin: 0 auto
+    }
+
+    /* ===== DRESS CODE ===== */
+    #dresscode {
+      text-align: center;
+      padding: 3rem 2rem 3.5rem
+    }
+
+    .dtitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: .8rem
+    }
+
+    .dsub {
+      font-size: 1rem;
+      color: var(--pink);
+      font-style: italic;
+      line-height: 1.75;
+      max-width: 310px;
+      margin: 0 auto 2rem
+    }
+
+    .swatches {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem
+    }
+
+    .sw {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, .2)
+    }
+
+    .dframes {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      align-items: center
+    }
+
+    .dpair {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      width: 100%;
+      padding: 0 1rem
+    }
+
+    .dpair.ladies {
+      flex-direction: row-reverse;
+      margin-top: -3.5rem;
+      align-self: flex-end
+    }
+
+    .dfi {
+      flex-shrink: 0;
+      width: 220px
+    }
+
+    .dfi img {
+      width: 100%;
+      display: block;
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, .4))
+    }
+
+    .dtxt {
+      flex: 1;
+      font-size: .95rem;
+      color: var(--pink);
+      font-style: italic;
+      line-height: 1.65;
+      padding-top: 1.5rem
+    }
+
+    .dtxt strong {
+      display: block;
+      font-style: normal;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: .3rem
+    }
+
+    .dpair.ladies .dtxt {
+      text-align: right
+    }
+
+    /* ===== DETAILS ===== */
+    #details {
+      text-align: center;
+    }
+
+    .detitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 1rem
+    }
+
+    #details p {
+      font-size: 1rem;
+      color: var(--dark);
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: .7rem
+    }
+
+    .cname {
+      font-style: normal !important;
+      font-weight: 500;
+      font-size: 1.1rem !important
+    }
+
+    .cph {
+      font-style: normal !important
+    }
+
+    /* Flowers at bottom of details (same as hero flowers) */
+    .detfl {
+      position: relative;
+      width: 140%;
+      margin-left: -20%;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .detfl img {
+      position: absolute;
+      object-fit: contain;
+      transform: scaleX(-1)
+    }
+
+    .detfl .f1 {
+      width: 90px;
+      bottom: -5px;
+      left: 2%
+    }
+
+    .detfl .f2 {
+      width: 110px;
+      bottom: -10px;
+      left: 11%
+    }
+
+    .detfl .fw1 {
+      width: 85px;
+      bottom: 30px;
+      left: 19%
+    }
+
+    .detfl .f3 {
+      width: 95px;
+      bottom: 5px;
+      left: 27%
+    }
+
+    .detfl .fw2 {
+      width: 80px;
+      bottom: 55px;
+      left: 37%
+    }
+
+    .detfl .f4 {
+      width: 115px;
+      bottom: 10px;
+      left: 43%
+    }
+
+    .detfl .f5 {
+      width: 100px;
+      bottom: 30px;
+      left: 53%
+    }
+
+    .detfl .fw3 {
+      width: 85px;
+      bottom: 20px;
+      left: 62%
+    }
+
+    .detfl .f6 {
+      width: 105px;
+      bottom: 5px;
+      left: 70%
+    }
+
+    .detfl .f7 {
+      width: 90px;
+      bottom: 35px;
+      left: 80%
+    }
+
+    .detfl .f8 {
+      width: 165px;
+      bottom: -20px;
+      left: 83%
+    }
+
+    /* ===== RSVP ===== */
+    #rsvp {
+      text-align: center;
+      padding: 3rem 2rem 0
+    }
+
+    .rtitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.3rem;
+      display: block;
+      margin-bottom: 1rem
+    }
+
+    .rsub {
+      font-size: 1rem;
+      color: var(--pink);
+      font-style: italic;
+      line-height: 1.75;
+      margin-bottom: 1.8rem
+    }
+
+    .rbtn {
+      display: inline-block;
+      padding: .85rem 3.5rem;
+      border: 2px solid #fff;
+      border-radius: 60px;
+      background: transparent;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .28em;
+      cursor: pointer;
+      transition: background .25s, color .25s;
+      margin-bottom: 2.5rem
+    }
+
+    .rbtn:hover {
+      background: #fff;
+      color: var(--burg)
+    }
+
+    .cls {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.3rem;
+      color: var(--pink);
+      display: block;
+      margin-bottom: .5rem
+    }
+
+    .cln {
+      font-size: 1.25rem;
+      margin-bottom: 2rem
+    }
+
+    .cphoto {
+      width: 100%;
+      display: block
+    }
+
+    /* ===== MODAL ===== */
+    .mo {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(50, 0, 15, .88);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem
+    }
+
+    .mo.open {
+      display: flex
+    }
+
+    .mb {
+      background: var(--cream);
+      color: var(--dark);
+      border-radius: 6px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      max-height: 92vh;
+      overflow-y: auto
+    }
+
+    .mc {
+      position: absolute;
+      top: .9rem;
+      right: 1.2rem;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--mid);
+      line-height: 1
+    }
+
+    .mb h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.1rem;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: .4rem
+    }
+
+    .mst {
+      text-align: center;
+      font-size: .9rem;
+      color: var(--mid);
+      font-style: italic;
+      margin-bottom: 1.5rem
+    }
+
+    .mb label {
+      display: block;
+      font-size: .85rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      color: var(--dark);
+      margin: 1rem 0 .35rem
+    }
+
+    .mb input[type=text] {
+      width: 100%;
+      padding: .65rem .9rem;
+      border: 1px solid #c0a8b0;
+      border-radius: 4px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--dark);
+      background: #fff
+    }
+
+    .rg {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      margin-top: .35rem
+    }
+
+    .rg label {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 400
+    }
+
+    .msub {
+      display: block;
+      width: 100%;
+      margin-top: 1.6rem;
+      padding: .9rem;
+      background: var(--burg);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .22em;
+      cursor: pointer;
+      transition: opacity .2s
+    }
+
+    .msub:hover {
+      opacity: .85
+    }
+
+    /* ===== MUSIC BTN ===== */
+    #mbtn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 888;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .35);
+      transition: transform .2s
+    }
+
+    #mbtn:hover {
+      transform: scale(1.08)
+    }
+
+    #mbtn svg {
+      fill: #fff
+    }
+
+    /* ===== REVEAL ===== */
+    .rv {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .75s, transform .75s
+    }
+
+    .rv.vis {
+      opacity: 1;
+      transform: none
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div id="hero-inner">
+      <video id="hv" autoplay muted loop playsinline preload="auto" referrerpolicy="no-referrer">
+        <source src="template-assets/bg_video.mp4" type="video/mp4">
+        <source src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/IMG_6230%20(1).MP4" type="video/mp4">
+      </video>
+      <div class="ho"></div>
+    </div>
+    <div class="hc">
+      <div class="htop rv">
+        <span class="hs">Wedding Day</span>
+        <p class="hdate">05.07.26</p>
+      </div>
+      <div class="hnames rv">
+        <span class="hname">Viktor</span>
+        <span class="hamp">&amp;</span>
+        <span class="hname">Paula</span>
+      </div>
+    </div>
+    <!-- ============================================================
+       BUNGA HERO - Edit CSS di atas untuk ubah ukuran/posisi/rotasi
+       r1-r4 = bunga merah | w1-w3 = bunga putih
+       ============================================================ -->
+    <div class="hfl">
+      <img class="r1" src="template-assets/1.png" alt="red 1">
+      <img class="w1" src="template-assets/8.png" alt="flower w1">
+      <img class="r2" src="template-assets/2ruby.png" alt="red 2">
+      <img class="w2" src="template-assets/6druby.png" alt="red-dark 2">
+      <img class="r3" src="template-assets/4ruby.png" alt="red 3">
+      <img class="w3" src="template-assets/noroot.png" alt="white 3">
+      <img class="r4" src="template-assets/1ruby.png" alt="red 4 - dominant">
+    </div>
+
+    <!-- TORN PAPER UNTUK MEMOTONG BAWAH VIDEO (Dibuat Tinggi) -->
+    <div class="video-mask"
+      style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; background: var(--burg);">
+      <div class="hero-torn">
+        <img src="template-assets/Mask_group_2_1_Trace.svg" alt="">
+      </div>
+      <!-- Ubah angka height ini (misal 15vh, 20vh, atau 100px) untuk mengatur seberapa tinggi penutup merahnya -->
+      <div style="height: -1vh;"></div>
+    </div>
+
+  </section>
+
+  <!-- GREETING -->
+  <section class="sb" id="greeting">
+    <div class="rv">
+      <span class="gtitle">Dear Friends and Family,</span>
+      <p class="gp">As we get ready to say &ldquo;I do,&rdquo; we feel grateful for the wonderful people in our lives.
+      </p>
+      <p class="gp" style="padding-bottom:1rem">Your support means the world to us, and we would be honored to have you
+        with us as we begin our life together.</p>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="sc" id="countdown">
+    <!-- Sobekan di atas putih, tepat di perbatasan dengan merah -->
+    <div class="torn tf"><img src="template-assets/Mask_group_2_1_Trace.svg" alt=""></div>
+    <div class="rv" style="text-align:center;padding:2.5rem 2rem">
+      <span class="ctitle">The Celebration Begins In</span>
+      <div class="timer">
+        <div class="tu"><span class="tn" id="cd-d">000</span><small>Days</small></div>
+        <span class="tc">:</span>
+        <div class="tu"><span class="tn" id="cd-h">00</span><small>Hours</small></div>
+        <span class="tc">:</span>
+        <div class="tu"><span class="tn" id="cd-m">00</span><small>Minutes</small></div>
+        <span class="tc">:</span>
+        <div class="tu"><span class="tn" id="cd-s">00</span><small>Seconds</small></div>
+      </div>
+    </div>
+    <!-- Sobekan di bawah putih, tepat di perbatasan dengan merah -->
+    <div class="torn"><img src="template-assets/Mask_group_2_1_Trace.svg" alt=""></div>
+  </section>
+
+  <!-- HASIL EDIT USER Tadi -->
+  <section class="sb" id="schedule">
+    <div style="text-align:center;padding:3rem 2rem 3.5rem">
+      <span class="stitle rv">Schedule of Events</span>
+      <div class="timeline">
+        <div class="te rv"><span class="tt">16:00</span>
+          <div class="tnd"><img src="template-assets/ChatGPT_Image_Nov_17.png" alt=""></div><span class="tl">Wedding
+            Ceremony</span>
+        </div>
+        <div class="te rv"><span class="tt">17:00</span>
+          <div class="tnd"><span class="tdm"></span></div><span class="tl">Cocktail Hour</span>
+        </div>
+        <div class="te rv"><span class="tt">19:00</span>
+          <div class="tnd"><span class="tdm"></span></div><span class="tl">Dinner</span>
+        </div>
+        <div class="te rv"><span class="tt">20:00</span>
+          <div class="tnd"><img src="template-assets/ChatGPT_Image_Nov_17.png" alt=""></div><span
+            class="tl">Party</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="sc" id="location">
+    <div class="torn tf"><img src="template-assets/Mask_group_2_1_Trace.svg" alt=""></div>
+    <div class="rv" style="text-align:center;padding:2.5rem 2rem">
+      <span class="ltitle">Location</span>
+      <p class="lvname">Chateau de Paon</p>
+      <p class="lvaddr">Address: Petit Chemin de Saint-Gilles<br>13200 Arles, France</p>
+      <img src="template-assets/image-gen_1-Photoroo.png" class="vsk" alt="Chateau de Paon sketch">
+    </div>
+    <div class="torn"><img src="template-assets/Mask_group_2_1_Trace.svg" alt=""></div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section class="sb" id="dresscode">
+    <div style="text-align:center;padding:3rem 2rem 3.5rem">
+      <span class="dtitle rv">Dress Code</span>
+      <p class="dsub rv">We kindly invite you to dress in elegant attire that reflects the style and spirit of our
+        special day.</p>
+      <div class="swatches rv">
+        <div class="sw" style="background:#4f5e3e"></div>
+        <div class="sw" style="background:#2f0e1f"></div>
+        <div class="sw" style="background:#3a3530"></div>
+        <div class="sw" style="background:#e7dcc8"></div>
+      </div>
+      <div class="dframes">
+        <div class="dpair rv">
+          <div class="dfi"><img src="template-assets/Group_170.png" alt="Gentlemen attire"></div>
+          <div class="dtxt"><strong>Gentlemen:</strong>Well-tailored suits with classic dress shoes are preferred.</div>
+        </div>
+        <div class="dpair ladies rv">
+          <div class="dfi"><img src="template-assets/Group_169.png" alt="Ladies attire"></div>
+          <div class="dtxt"><strong>Ladies:</strong>Formal dresses in elegant, polished styles are encouraged.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section class="sc" id="details">
+    <div class="torn tf"><img src="template-assets/Mask_group_2_1_Trace.svg" alt=""></div>
+    <div class="rv" style="text-align:center;padding:2.5rem 2rem 0">
+      <span class="detitle">Details</span>
+      <p>For additional information or questions,<br>please contact the wedding organizers.</p>
+      <p class="cname">Ameila</p>
+      <p class="cph">+31 6845965887</p>
+      <br>
+      <p>Your presence is the greatest gift to us. However, if you wish to honor us with a present, a contribution
+        toward our future would be sincerely appreciated.</p>
+    </div>
+    <!-- Flowers same as hero but flipped -->
+    <div class="detfl">
+      <img class="f1" src="template-assets/2ruby.png" alt="">
+      <img class="fw1" src="template-assets/noroot.png" alt="">
+      <img class="f2" src="template-assets/4ruby.png" alt="">
+      <img class="f3" src="template-assets/6druby.png" alt="">
+      <img class="fw2" src="template-assets/ChatGPT_Image_Nov_17.png" alt="">
+      <img class="f4" src="template-assets/1ruby.png" alt="">
+      <img class="f5" src="template-assets/7uruby.png" alt="">
+      <img class="f6" src="template-assets/1.png" alt="">
+      <img class="fw3" src="template-assets/noroot.png" alt="">
+      <img class="f7" src="template-assets/8ruby.png" alt="">
+      <img class="f8" src="template-assets/2ruby.png" alt="">
+    </div>
+    <div class="torn"><img src="template-assets/Mask_group_2_1_Trace.svg" alt=""></div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="sb" id="rsvp">
+    <div class="rv" style="text-align:center;padding:3rem 2rem 0">
+      <span class="rtitle">Confirm Your Attendance</span>
+      <p class="rsub">To help us prepare for a joyful celebration,<br>kindly confirm your attendance.</p>
+      <button class="rbtn" id="rbtn">RSVP</button>
+      <span class="cls">Hope to see you there!</span>
+      <p class="cln">Viktor and Paula</p>
+    </div>
+    <img src="template-assets/300592484d1f31590325.png" class="cphoto" alt="Viktor and Paula">
+  </section>
+
+  <!-- RSVP MODAL -->
+  <div class="mo" id="modal">
+    <div class="mb">
+      <button class="mc" id="mc">&#215;</button>
+      <h2>Confirm Your Attendance</h2>
+      <p class="mst">Please RSVP before March 20</p>
+      <form id="mf">
+        <label>Your name</label>
+        <input type="text" placeholder="Your full name" required>
+        <label>Will you come?</label>
+        <div class="rg">
+          <label><input type="radio" name="att" value="yes"> Yes, I will</label>
+          <label><input type="radio" name="att" value="no"> Unfortunately, I can&#39;t :(</label>
+        </div>
+        <label>Do you have any food intolerances?</label>
+        <input type="text" placeholder="Leave blank if none">
+        <button type="submit" class="msub">SUBMIT</button>
+      </form>
+    </div>
+  </div>
+
+  <audio id="aud" loop>
+    <source src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Alex%20Warren%20-%20Ordinary%20Lyrics.mp3"
+      type="audio/mpeg">
+  </audio>
+  <button id="mbtn" title="Toggle music">
+    <svg viewBox="0 0 24 24" width="22" height="22">
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+    </svg>
+  </button>
+
+  <script>
+    (function () {
+      var T = new Date('2027-07-05T16:00:00+02:00');
+      function p(n, w) { return String(n).padStart(w || 2, '0') }
+      function tick() {
+        var d = T - Date.now(); if (d < 0) d = 0;
+        document.getElementById('cd-d').textContent = p(Math.floor(d / 864e5), 3);
+        document.getElementById('cd-h').textContent = p(Math.floor(d % 864e5 / 36e5));
+        document.getElementById('cd-m').textContent = p(Math.floor(d % 36e5 / 6e4));
+        document.getElementById('cd-s').textContent = p(Math.floor(d % 6e4 / 1e3));
+      }
+      tick(); setInterval(tick, 1000);
+
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target) } }) }, { threshold: .1 });
+      document.querySelectorAll('.rv').forEach(function (el) { io.observe(el) });
+
+      var modal = document.getElementById('modal');
+      document.getElementById('rbtn').onclick = function () { modal.classList.add('open') };
+      document.getElementById('mc').onclick = function () { modal.classList.remove('open') };
+      modal.onclick = function (e) { if (e.target === this) this.classList.remove('open') };
+      document.getElementById('mf').onsubmit = function (e) {
+        e.preventDefault();
+        alert('Thank you! Your RSVP has been submitted.');
+        modal.classList.remove('open'); this.reset();
+      };
+
+      var aud = document.getElementById('aud'), playing = false, btn = document.getElementById('mbtn');
+      btn.onclick = function () {
+        if (playing) { aud.pause(); playing = false; btn.style.opacity = '.6' }
+        else { aud.play().then(function () { playing = true; btn.style.opacity = '1' }).catch(function () { }) }
+      };
+      document.addEventListener('click', function tryPlay() {
+        if (!playing) { aud.play().then(function () { playing = true }).catch(function () { }) }
+        document.removeEventListener('click', tryPlay);
+      }, { once: true });
+    })();
+  </script>
+</body>
+
+</html>
