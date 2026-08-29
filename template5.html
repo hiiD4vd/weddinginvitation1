@@ -1133,6 +1133,15 @@
     </div>
   </div>
 
+  <audio id="aud" loop>
+    <source src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Alex%20Warren%20-%20Ordinary%20Lyrics.mp3"
+      type="audio/mpeg">
+  </audio>
+  <button id="mbtn" title="Toggle music">
+    <svg viewBox="0 0 24 24" width="22" height="22">
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+    </svg>
+  </button>
 
   <script>
     (function () {
@@ -1157,6 +1166,15 @@
         modal.classList.remove('open'); this.reset();
       };
 
+      var aud = document.getElementById('aud'), playing = false, btn = document.getElementById('mbtn');
+      btn.onclick = function () {
+        if (playing) { aud.pause(); playing = false; btn.style.opacity = '.6' }
+        else { aud.play().then(function () { playing = true; btn.style.opacity = '1' }).catch(function () { }) }
+      };
+      document.addEventListener('click', function tryPlay() {
+        if (!playing) { aud.play().then(function () { playing = true }).catch(function () { }) }
+        document.removeEventListener('click', tryPlay);
+      }, { once: true });
     })();
   </script>
 </body>
