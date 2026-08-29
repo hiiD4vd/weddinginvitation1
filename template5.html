@@ -1134,5 +1134,31 @@
   </div>
 
 
+  <script>
+    (function () {
+      var T = new Date('2027-07-05T16:00:00+02:00');
+      function p(n, w) { return String(n).padStart(w || 2, '0') }
+      function tick() {
+        var d = T - Date.now(); if (d < 0) d = 0;
+        document.getElementById('cd-d').textContent = p(Math.floor(d / 864e5), 3);
+        document.getElementById('cd-h').textContent = p(Math.floor(d % 864e5 / 36e5));
+        document.getElementById('cd-m').textContent = p(Math.floor(d % 36e5 / 6e4));
+        document.getElementById('cd-s').textContent = p(Math.floor(d % 6e4 / 1e3));
+      }
+      tick(); setInterval(tick, 1000);
+
+      var modal = document.getElementById('modal');
+      document.getElementById('rbtn').onclick = function () { modal.classList.add('open') };
+      document.getElementById('mc').onclick = function () { modal.classList.remove('open') };
+      modal.onclick = function (e) { if (e.target === this) this.classList.remove('open') };
+      document.getElementById('mf').onsubmit = function (e) {
+        e.preventDefault();
+        alert('Thank you! Your RSVP has been submitted.');
+        modal.classList.remove('open'); this.reset();
+      };
+
+    })();
+  </script>
 </body>
+
 </html>
