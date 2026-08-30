@@ -882,35 +882,46 @@
     @media (max-width: 480px) {
 
       /* --- HERO --- */
+      /* susunan bunga: PERSIS desktop (posisi & ukuran asli), di-zoom out seragam.
+         Scale DIHITUNG dari lebar layar → pas di SEMUA lebar HP (360/375/393/414/430),
+         bukan angka fix. Rasio & estetika susunan tetep sama kayak desktop. */
       .hfl {
         --fs: min(1, calc((100vw + 60px) / 731));
         transform: scale(var(--fs));
         transform-origin: bottom center;
+        /* kompensasi ruang kosong dari scale → garis putih di bawah bunga ilang */
         margin-bottom: calc(-280px * (1 - var(--fs)));
       }
 
+      /* kunci sisa luber bunga → gak ada area kosong kanan / scroll horizontal */
       #hero {
         overflow: hidden;
       }
 
+      /* sobekan bawah hero: jangan 150% + geser -25% di layar sempit */
       .hero-torn img {
         width: 100%;
         margin-left: 0;
       }
 
+      /* nama: skala halus ngikutin layar */
       .hname { font-size: clamp(3.6rem, 14vw, 5.8rem); }
       .hs { font-size: clamp(2rem, 7vw, 2.6rem); }
 
       /* --- DRESS CODE --- */
+      /* frame: 220px fix → proporsional */
       .dfi { width: 48%; }
+
+      /* Ladies: jangan tumpuk frame Gentlemen (margin negatif) */
       .dpair.ladies { margin-top: 1.5rem; }
+
+      /* teks: lega & masih kebaca */
       .dtxt {
         font-size: .85rem;
         padding-top: .8rem;
         line-height: 1.55;
       }
       .dtxt strong { font-size: .92rem; }
-      .swatches { margin-bottom: 2rem; }
     }
   </style>
 </head>
