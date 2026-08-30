@@ -871,6 +871,14 @@
          Konten dalamnya tetap centered (padding), jadi gak nempel tepi layar. */
       :root { --mw: 100%; }
 
+      /* KUNCI zoom-out HP: elemen lebar (bunga 170%/140%) maksa viewport > layar.
+         Paksa semua clip di dalam viewport → Chrome/Safari HP gak auto zoom-out. */
+      html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+      }
+
       /* --- HERO --- */
       /* susunan bunga: PERSIS desktop (posisi & ukuran asli), di-zoom out seragam.
          Scale DIHITUNG dari lebar layar → pas di SEMUA lebar HP (360/375/393/414/430),
