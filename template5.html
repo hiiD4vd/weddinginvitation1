@@ -883,8 +883,10 @@
 
       /* --- HERO --- */
       .hfl {
-        transform: scale(0.75);
+        --fs: min(1, calc((100vw + 60px) / 731));
+        transform: scale(var(--fs));
         transform-origin: bottom center;
+        margin-bottom: calc(-280px * (1 - var(--fs)));
       }
 
       #hero {
