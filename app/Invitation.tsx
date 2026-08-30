@@ -252,7 +252,6 @@ export default function Invitation() {
         <span className="hamp">&amp;</span>
         <span className="hname">Paula</span>
       </div>
-      <button className="calbtn rv" onClick={saveToCalendar}>Simpan di Kalender</button>
     </div>
     {/* ============================================================
        BUNGA HERO - Edit CSS di atas untuk ubah ukuran/posisi/rotasi
@@ -341,6 +340,7 @@ export default function Invitation() {
         <span className="tc">:</span>
         <div className="tu"><span className="tn" id="cd-s">00</span><small>Seconds</small></div>
       </div>
+      <button className="calbtn rv" onClick={saveToCalendar}>Simpan di Kalender</button>
     </div>
     {/* Sobekan BAWAH: diturunkan (margin negatif) supaya area transparan di bawah massa
          overlap ke section merah schedule → sebagian di merah, sebagian di cream */}
