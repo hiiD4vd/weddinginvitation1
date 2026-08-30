@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import BendingGallery from "./BendingGallery";
+import WishStack from "./WishStack";
 
 export default function Invitation() {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -18,16 +19,76 @@ export default function Invitation() {
     { name: "Sinta", text: "Congratulations Viktor & Paula! Wish you all the best." },
     { name: "Andri", text: "Akhirnya! Kalian berdua memang ditakdirkan untuk bersama. 🎉" },
     { name: "Lina", text: "Mendoakan yang terbaik untuk kalian berdua. Amin." },
-    { name: "Bayu", text: "Bahagia selalu ya! Sampai jumpa di hari bahagia." },
-    { name: "Nadia", text: "Semoga langgeng sampai maut memisahkan." },
-    { name: "Yoga", text: "Selamat menempuh hidup baru, bro! Dari temen SMA yang paling bahagia liat kalian jadian." },
-    { name: "Tari", text: "Masha Allah, begitu romantis kisahnya. Doa terbaik selalu ya." },
-    { name: "Agus", text: "Ikut bahagia! Jangan lupa undang makan-maennya. 😄" },
-    { name: "Vina", text: "Semoga pernikahan kalian diberkahi dan selalu langgeng." },
   ]);
-  const [wishPage, setWishPage] = useState(0);
   const [wishForm, setWishForm] = useState<Record<string, string>>({});
-  const WISH_PER_PAGE = 5;
+
+  // --- helper: render teks ke canvas → data URL (kartu ucapan buat WishStack) ---
+  const makeWishCard = (name: string, text: string) => {
+    const W = 512, H = 640;   // portrait — cocok rasio kartu stack
+    const cv = document.createElement("canvas");
+    cv.width = W; cv.height = H;
+    const c = cv.getContext("2d");
+    if (!c) return "";
+    c.fillStyle = "#fcf9f5";
+    c.fillRect(0, 0, W, H);
+    c.strokeStyle = "#66021f";
+    c.lineWidth = 6;
+    c.strokeRect(14, 14, W - 28, H - 28);
+    c.fillStyle = "#66021f";
+    c.font = "40px Georgia, serif";
+    c.textAlign = "center";
+    c.textBaseline = "middle";
+    c.fillText("\u201C", W / 2, 90);
+    c.fillStyle = "#66021f";
+    c.font = "italic 44px Georgia, serif";
+    c.fillText(name, W / 2, 165);
+    c.strokeStyle = "rgba(102,2,31,0.3)";
+    c.lineWidth = 1;
+    c.beginPath();
+    c.moveTo(W * 0.25, 205);
+    c.lineTo(W * 0.75, 205);
+    c.stroke();
+    c.font = "italic 30px Georgia, serif";
+    c.fillStyle = "#2d1520";
+    const words = text.split(" ");
+    let line = "";
+    let y = 260;
+    const maxW = W - 100;
+    let lines = 0;
+    for (const w of words) {
+      const test = line ? line + " " + w : w;
+      if (c.measureText(test).width > maxW && line) {
+        c.fillText(line, W / 2, y);
+        line = w;
+        y += 44;
+        lines++;
+        if (lines >= 6) break;
+      } else {
+        line = test;
+      }
+    }
+    if (line && lines < 6) c.fillText(line, W / 2, y);
+    return cv.toDataURL("image/png");
+  };
+
+  const galItems = useMemo(
+    () => [
+      { image: "/template-assets/300592484d1f31590325.png", text: "Viktor & Paula" },
+      { image: "/template-assets/ChatGPT_Image_Aug_3_.png", text: "Prewedding 01" },
+      { image: "/template-assets/image-gen_1-Photoroo.png", text: "Prewedding 02" },
+      { image: "/template-assets/ChatGPT_Image_Nov_17.png", text: "Prewedding 03" },
+    ],
+    [],
+  );
+
+  const [wishCards, setWishCards] = useState<{ image: string; text: string }[]>([]);
+
+  // generate kartu ucapan HANYA di client (document gak ada saat SSR)
+  useEffect(() => {
+    const build = () => setWishCards(wishes.map((w) => ({ image: makeWishCard(w.name, w.text), text: w.name })));
+    build();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wishes]);
 
   const copyAcct = (id: string, val: string) => {
     if (navigator.clipboard) {
@@ -541,25 +602,11 @@ export default function Invitation() {
     <div className="torn" style={{marginTop: "-36px", marginBottom: "-1px"}}><img src="/template-assets/Mask_group_2_1_Trace.svg" alt="" /></div>
     <div className="rv" style={{textAlign: "center", padding: "3rem 2rem"}}>
       <span className="dtitle" style={{color: "var(--burg)"}}>Wedding Wish</span>
-      <p className="dsub" style={{color: "var(--dark)"}}>Ucapan &amp; doa dari keluarga dan sahabat.</p>
+      <p className="dsub" style={{color: "var(--dark)"}}>Ucapan &amp; doa dari keluarga dan sahabat. Geser untuk melihat.</p>
 
-      {/* Daftar ucapan */}
-      <div className="wishlist">
-        {wishes.slice(wishPage * WISH_PER_PAGE, wishPage * WISH_PER_PAGE + WISH_PER_PAGE).map((w, i) => (
-          <div className="wishcard" key={i}>
-            <span className="wish-name">{w.name}</span>
-            <p className="wish-text">{w.text}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Pagination */}
-      <div className="pager">
-        <button className="pager-btn" disabled={wishPage === 0} onClick={() => setWishPage(wishPage - 1)}>&#8592;</button>
-        {Array.from({ length: Math.ceil(wishes.length / WISH_PER_PAGE) }).map((_, i) => (
-          <span key={i} className={"pager-dot" + (i === wishPage ? " on" : "")} onClick={() => setWishPage(i)}>{i + 1}</span>
-        ))}
-        <button className="pager-btn" disabled={wishPage >= Math.ceil(wishes.length / WISH_PER_PAGE) - 1} onClick={() => setWishPage(wishPage + 1)}>&#8594;</button>
+      {/* Deck kartu ucapan — swipe buat buang, kartu berikutnya muncul */}
+      <div className="wc-wrap">
+        <WishStack cards={wishCards} sensitivity={160} autoplay autoplayDelay={4000} />
       </div>
 
       {/* Form kirim ucapan */}
