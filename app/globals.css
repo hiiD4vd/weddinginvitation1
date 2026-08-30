@@ -1,0 +1,923 @@
+*,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --burg: #66021f;
+      --burg2: #53021a;
+      --cream: #fcf9f5;
+      --pink: #d8b0c0;
+      --dark: #2d1520;
+      --mid: #5a3040;
+      --gold: #c49630;
+      --mw: 430px;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--font-cormorant), Georgia, serif;
+      background: var(--burg);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      width: 100%;
+      max-width: var(--mw);
+      min-height: 100svh;
+      background: var(--burg);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: visible;
+      /* allow flowers to spill outside */
+    }
+
+    #hero-inner {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    #hv {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .ho {
+      position: absolute;
+      inset: 0;
+      background: rgba(60, 0, 15, .12);
+      z-index: 1
+    }
+
+    .hc {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      padding-top: 2.5rem;
+      width: 100%;
+    }
+
+    .htop {
+      text-align: center;
+      padding: 0 2rem
+    }
+
+    .hs {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 2.6rem;
+      display: block;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+    }
+
+    .hdate {
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .92rem;
+      letter-spacing: .2em;
+      margin-top: .2rem;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, .5);
+    }
+
+    .hnames {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+    }
+
+    .hname {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 5.8rem;
+      line-height: 1.0;
+      text-shadow: 0 3px 20px rgba(0, 0, 0, .45);
+      display: block;
+    }
+
+    .hamp {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 3rem;
+      color: rgba(255, 255, 255, .9);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+      display: block;
+    }
+
+    /* ================================================================
+       SUSUNAN BUNGA - MUDAH DIEDIT!
+       Setiap bunga punya:
+         width  = ukuran bunga
+         left   = posisi horizontal (% dari container)
+         bottom = posisi vertikal dari bawah (px)
+         rotate = kemiringan (derajat, + kanan, - kiri)
+       ================================================================ */
+    .hfl {
+      position: relative;
+      z-index: 3;
+      width: 170%;
+      margin-left: -30%;
+      /* lebar container bunga - edit untuk extend ke kiri/kanan */
+      height: 280px;
+      margin-top: auto;
+      flex-shrink: 0;
+    }
+
+    .hfl img {
+      position: absolute;
+      object-fit: contain;
+    }
+
+    /* === BUNGA MERAH 1 - Paling Kiri === */
+    .hfl .r1 {
+      width: 160px;
+      bottom: 35px;
+      left: 43%;
+      transform: rotate(30deg);
+      z-index: 6;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA MERAH 2 - bunga yg kecil ada daunnya === */
+    .hfl .r2 {
+      width: 200px;
+      bottom: 30px;
+      left: 62%;
+      transform: rotate(0deg);
+      z-index: 5;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA MERAH 3 - paling kiri === */
+    .hfl .r3 {
+      width: 140px;
+      bottom: 40px;
+      left: 23%;
+      transform: rotate(-5deg);
+      z-index: 2;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA MERAH 4 - Paling Kanan (DOMINAN, terbesar) === */
+    .hfl .r4 {
+      width: 260px;
+      bottom: 70px;
+      left: 65%;
+      transform: rotate(8deg);
+      z-index: 6;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA PUTIH 1 - Kiri Tengah === */
+    .hfl .w1 {
+      width: 100px;
+      bottom: 106px;
+      left: 38%;
+      transform: rotate(-12deg);
+      z-index: 1;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA PUTIH 2 - Tengah === */
+    .hfl .w2 {
+      width: 140px;
+      bottom: 22px;
+      left: 33%;
+      transform: rotate(3deg);
+      z-index: 5;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* === BUNGA PUTIH 3 - Kanan Tengah === */
+    .hfl .w3 {
+      width: 180px;
+      bottom: 60px;
+      left: 50%;
+      transform: rotate(-8deg);
+      z-index: 1;
+      /* angka lebih besar = lebih depan */
+    }
+
+    /* ===== SECTIONS ===== */
+    .sb {
+      width: 100%;
+      max-width: var(--mw);
+      background: var(--burg)
+    }
+
+    .sc {
+      width: 100%;
+      max-width: var(--mw);
+      background: var(--cream);
+      color: var(--dark)
+    }
+
+    /* ===== TORN PAPER ===== */
+    .torn {
+      width: 100%;
+      display: block;
+      line-height: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .torn img {
+      width: 150%;
+      max-width: none;
+      display: block;
+      margin-left: -25%;
+    }
+
+    .hero-torn {
+      width: 100%;
+      display: block;
+      line-height: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .hero-torn img {
+      width: 150%;
+      max-width: none;
+      display: block;
+      margin-left: -25%;
+    }
+
+    .tf img {
+      transform: scaleY(-1)
+    }
+
+    /* ===== GREETING ===== */
+    #greeting {
+      text-align: center;
+      padding: 3rem 2.5rem 1.5rem
+    }
+
+    .gtitle {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 1.5rem
+    }
+
+    .gp {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--pink);
+      font-style: italic;
+      line-height: 1.85;
+      margin-bottom: 1.2rem
+    }
+
+    /* ===== COUNTDOWN ===== */
+    #countdown {
+      text-align: center;
+    }
+
+    .ctitle {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 2.2rem;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 1.5rem
+    }
+
+    .timer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center
+    }
+
+    .tu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 68px
+    }
+
+    .tn {
+      font-size: 4rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--dark)
+    }
+
+    .tu small {
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .58rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: .35rem
+    }
+
+    .tc {
+      font-size: 3.6rem;
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1.05;
+      padding: 0 .1rem
+    }
+
+    /* ===== SCHEDULE ===== */
+    #schedule {
+      text-align: center;
+      padding: 3rem 2rem 3.5rem
+    }
+
+    .stitle {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 2.5rem
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      align-items: center
+    }
+
+    .te {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 310px;
+      padding: .8rem 0;
+      position: relative
+    }
+
+    .tt {
+      font-size: 1.8rem;
+      font-weight: 300;
+      min-width: 90px;
+      text-align: right;
+      letter-spacing: -.02em
+    }
+
+    .tnd {
+      width: 62px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      flex-shrink: 0
+    }
+
+    .tnd img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain
+    }
+
+    .tdm {
+      width: 11px;
+      height: 11px;
+      background: #fff;
+      transform: rotate(45deg)
+    }
+
+    .te:not(:last-child) .tnd::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 1.5rem;
+      background: rgba(255, 255, 255, .35)
+    }
+
+    .tl {
+      font-size: 1.1rem;
+      font-weight: 300;
+      text-align: left;
+      padding-left: .5rem;
+      flex: 1
+    }
+
+    /* ===== LOCATION ===== */
+    #location {
+      text-align: center;
+    }
+
+    .ltitle {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 2.5rem;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 1rem
+    }
+
+    .lvname {
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin-bottom: .5rem
+    }
+
+    .lvaddr {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--mid);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 1.5rem
+    }
+
+    .vsk {
+      width: 90%;
+      max-width: 360px;
+      display: block;
+      margin: 0 auto
+    }
+
+    /* ===== DRESS CODE ===== */
+    #dresscode {
+      text-align: center;
+      padding: 3rem 2rem 3.5rem
+    }
+
+    .dtitle {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: .8rem
+    }
+
+    .dsub {
+      font-size: 1rem;
+      color: var(--pink);
+      font-style: italic;
+      line-height: 1.75;
+      max-width: 310px;
+      margin: 0 auto 2rem
+    }
+
+    .swatches {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem
+    }
+
+    .sw {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, .2)
+    }
+
+    .dframes {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      align-items: center
+    }
+
+    .dpair {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      width: 100%;
+      padding: 0 1rem
+    }
+
+    .dpair.ladies {
+      flex-direction: row-reverse;
+      margin-top: -3.5rem;
+      align-self: flex-end
+    }
+
+    .dfi {
+      flex-shrink: 0;
+      width: 220px
+    }
+
+    .dfi img {
+      width: 100%;
+      display: block;
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, .4))
+    }
+
+    .dtxt {
+      flex: 1;
+      font-size: .95rem;
+      color: var(--pink);
+      font-style: italic;
+      line-height: 1.65;
+      padding-top: 1.5rem
+    }
+
+    .dtxt strong {
+      display: block;
+      font-style: normal;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: .3rem
+    }
+
+    .dpair.ladies .dtxt {
+      text-align: right
+    }
+
+    /* ===== DETAILS ===== */
+    #details {
+      text-align: center;
+    }
+
+    .detitle {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 2.5rem;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 1rem
+    }
+
+    #details p {
+      font-size: 1rem;
+      color: var(--dark);
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: .7rem
+    }
+
+    .cname {
+      font-style: normal !important;
+      font-weight: 500;
+      font-size: 1.1rem !important
+    }
+
+    .cph {
+      font-style: normal !important
+    }
+
+    /* Flowers at bottom of details (same as hero flowers) */
+    .detfl {
+      position: relative;
+      width: 140%;
+      margin-left: -20%;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .detfl img {
+      position: absolute;
+      object-fit: contain;
+      transform: scaleX(-1)
+    }
+
+    .detfl .f1 {
+      width: 90px;
+      bottom: -5px;
+      left: 2%
+    }
+
+    .detfl .f2 {
+      width: 110px;
+      bottom: -10px;
+      left: 11%
+    }
+
+    .detfl .fw1 {
+      width: 85px;
+      bottom: 30px;
+      left: 19%
+    }
+
+    .detfl .f3 {
+      width: 95px;
+      bottom: 5px;
+      left: 27%
+    }
+
+    .detfl .fw2 {
+      width: 80px;
+      bottom: 55px;
+      left: 37%
+    }
+
+    .detfl .f4 {
+      width: 115px;
+      bottom: 10px;
+      left: 43%
+    }
+
+    .detfl .f5 {
+      width: 100px;
+      bottom: 30px;
+      left: 53%
+    }
+
+    .detfl .fw3 {
+      width: 85px;
+      bottom: 20px;
+      left: 62%
+    }
+
+    .detfl .f6 {
+      width: 105px;
+      bottom: 5px;
+      left: 70%
+    }
+
+    .detfl .f7 {
+      width: 90px;
+      bottom: 35px;
+      left: 80%
+    }
+
+    .detfl .f8 {
+      width: 165px;
+      bottom: -20px;
+      left: 83%
+    }
+
+    /* ===== RSVP ===== */
+    #rsvp {
+      text-align: center;
+      padding: 3rem 2rem 0
+    }
+
+    .rtitle {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 2.3rem;
+      display: block;
+      margin-bottom: 1rem
+    }
+
+    .rsub {
+      font-size: 1rem;
+      color: var(--pink);
+      font-style: italic;
+      line-height: 1.75;
+      margin-bottom: 1.8rem
+    }
+
+    .rbtn {
+      display: inline-block;
+      padding: .85rem 3.5rem;
+      border: 2px solid #fff;
+      border-radius: 60px;
+      background: transparent;
+      color: #fff;
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .85rem;
+      letter-spacing: .28em;
+      cursor: pointer;
+      transition: background .25s, color .25s;
+      margin-bottom: 2.5rem
+    }
+
+    .rbtn:hover {
+      background: #fff;
+      color: var(--burg)
+    }
+
+    .cls {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 2.3rem;
+      color: var(--pink);
+      display: block;
+      margin-bottom: .5rem
+    }
+
+    .cln {
+      font-size: 1.25rem;
+      margin-bottom: 2rem
+    }
+
+    .cphoto {
+      width: 100%;
+      display: block
+    }
+
+    /* ===== MODAL ===== */
+    .mo {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(50, 0, 15, .88);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem
+    }
+
+    .mo.open {
+      display: flex
+    }
+
+    .mb {
+      background: var(--cream);
+      color: var(--dark);
+      border-radius: 6px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      max-height: 92vh;
+      overflow-y: auto
+    }
+
+    .mc {
+      position: absolute;
+      top: .9rem;
+      right: 1.2rem;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--mid);
+      line-height: 1
+    }
+
+    .mb h2 {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 2.1rem;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: .4rem
+    }
+
+    .mst {
+      text-align: center;
+      font-size: .9rem;
+      color: var(--mid);
+      font-style: italic;
+      margin-bottom: 1.5rem
+    }
+
+    .mb label {
+      display: block;
+      font-size: .85rem;
+      font-family: var(--font-montserrat), sans-serif;
+      font-weight: 500;
+      color: var(--dark);
+      margin: 1rem 0 .35rem
+    }
+
+    .mb input[type=text] {
+      width: 100%;
+      padding: .65rem .9rem;
+      border: 1px solid #c0a8b0;
+      border-radius: 4px;
+      font-family: var(--font-cormorant), serif;
+      font-size: 1rem;
+      color: var(--dark);
+      background: #fff
+    }
+
+    .rg {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      margin-top: .35rem
+    }
+
+    .rg label {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin: 0;
+      font-family: var(--font-cormorant), serif;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 400
+    }
+
+    .msub {
+      display: block;
+      width: 100%;
+      margin-top: 1.6rem;
+      padding: .9rem;
+      background: var(--burg);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .85rem;
+      letter-spacing: .22em;
+      cursor: pointer;
+      transition: opacity .2s
+    }
+
+    .msub:hover {
+      opacity: .85
+    }
+
+    /* ===== MUSIC BTN ===== */
+    #mbtn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 888;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .35);
+      transition: transform .2s
+    }
+
+    #mbtn:hover {
+      transform: scale(1.08)
+    }
+
+    #mbtn svg {
+      fill: #fff
+    }
+
+    /* ===== REVEAL ===== */
+    .rv {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .75s, transform .75s
+    }
+
+    .rv.vis {
+      opacity: 1;
+      transform: none
+    }
+
+    /* ===== MOBILE FIXES (<=480px) ===== */
+    @media (max-width: 480px) {
+
+      /* --- FULL WIDTH: lepas kunci 430px → section maksimal selebar HP berapapun.
+         Konten dalamnya tetap centered (padding), jadi gak nempel tepi layar. */
+      :root { --mw: 100%; }
+
+      /* --- HERO --- */
+      /* susunan bunga: PERSIS desktop (posisi & ukuran asli), di-zoom out seragam.
+         Scale DIHITUNG dari lebar layar → pas di SEMUA lebar HP (360/375/393/414/430),
+         bukan angka fix. Rasio & estetika susunan tetep sama kayak desktop. */
+      .hfl {
+        --fs: min(1, calc((100vw + 60px) / 731));
+        transform: scale(var(--fs));
+        transform-origin: bottom center;
+        /* kompensasi ruang kosong dari scale → garis putih di bawah bunga ilang */
+        margin-bottom: calc(-280px * (1 - var(--fs)));
+        /* turunin bunga biar overlap ke section merah sedalam versi desktop/HTML lama */
+        bottom: -60px;
+      }
+
+      /* kunci sisa luber bunga → gak ada area kosong kanan / scroll horizontal */
+      #hero {
+        overflow: hidden;
+      }
+
+      /* sobekan bawah hero: naik ketutup bunga → strip putih tipis di bawah bunga ilang */
+      .video-mask {
+        margin-top: -42px;
+      }
+      .hero-torn img {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      /* nama: skala halus ngikutin layar */
+      .hname { font-size: clamp(3.6rem, 14vw, 5.8rem); }
+      .hs { font-size: clamp(2rem, 7vw, 2.6rem); }
+
+      /* --- SECTIONS: konten tetap ada napas kiri-kanan walau section full width --- */
+      #greeting, #dresscode, #rsvp { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+      /* --- DRESS CODE --- */
+      /* frame: 220px fix → proporsional */
+      .dfi { width: 48%; }
+
+      /* Ladies: jangan tumpuk frame Gentlemen (margin negatif) */
+      .dpair.ladies { margin-top: 1.5rem; }
+
+      /* teks: lega & masih kebaca */
+      .dtxt {
+        font-size: .85rem;
+        padding-top: .8rem;
+        line-height: 1.55;
+      }
+      .dtxt strong { font-size: .92rem; }
+    }
