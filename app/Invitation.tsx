@@ -25,22 +25,6 @@ export default function Invitation() {
     return () => clearInterval(iv);
   }, []);
 
-  // Scroll reveal
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (es) =>
-        es.forEach((e) => {
-          if (e.isIntersecting) {
-            (e.target as HTMLElement).classList.add("vis");
-            io.unobserve(e.target);
-          }
-        }),
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll(".rv").forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
-
   // Audio autoPlay sekali saat user pertama kali klik di mana aja
   useEffect(() => {
     const tryPlay = () => {
