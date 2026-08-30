@@ -490,7 +490,7 @@
     .dframes {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 3rem;   /* napas antar titik story (sebelumnya 0 = nempel) */
       align-items: center
     }
 
