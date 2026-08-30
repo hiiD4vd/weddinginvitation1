@@ -504,7 +504,7 @@
 
     .dpair.ladies {
       flex-direction: row-reverse;
-      margin-top: -3.5rem;
+      margin-top: 0;   /* jangan overlap — gap:3rem udah nyediain napas */
       align-self: flex-end
     }
 
