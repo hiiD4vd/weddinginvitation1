@@ -825,6 +825,294 @@
       opacity: .85
     }
 
+    /* ===== PROFIL MEMPELAI + GOOGLE MAPS ===== */
+    .ls-sub {
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .95rem;
+      line-height: 1.7;
+      margin: 0 auto 1.6rem;
+      max-width: 20rem;
+      color: var(--burg);
+      font-style: italic;
+    }
+
+    .iglink {
+      display: inline-block;
+      margin-top: .8rem;
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .8rem;
+      letter-spacing: .08em;
+      color: var(--burg);
+      text-decoration: none;
+      border: 1px solid var(--burg);
+      border-radius: 60px;
+      padding: .5rem 1.4rem;
+      transition: background .2s, color .2s;
+    }
+
+    .iglink:hover {
+      background: var(--burg);
+      color: #fff;
+    }
+
+    .gmaps-btn {
+      display: inline-block;
+      margin-top: 1.2rem;
+      margin-right: .6rem;
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .85rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--burg);
+      border: none;
+      border-radius: 60px;
+      padding: .85rem 2.2rem;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+
+    .gmaps-btn:hover {
+      opacity: .85;
+    }
+
+    .ig-btn {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .85rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--burg);
+      border: none;
+      border-radius: 60px;
+      padding: .85rem 2.2rem;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+
+    .ig-btn:hover {
+      opacity: .85;
+    }
+
+    /* ===== COVER INTRO (video amplop) ===== */
+    #cover-intro {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--burg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 1.1s ease, transform 1.1s ease, filter 1.1s ease;
+      will-change: opacity, transform, filter;
+    }
+
+    #cover-intro.playing {
+      /* saat video jalan, cursor normal */
+      cursor: default;
+    }
+
+    #cover-vid {
+      width: 100%;
+      max-width: var(--mw);
+      height: 100svh;
+      object-fit: contain;
+      background: var(--burg);
+    }
+
+    #cover-tap {
+      position: absolute;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: transparent;
+      border: 2px solid #fff;
+      border-radius: 60px;
+      color: #fff;
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .85rem;
+      letter-spacing: .28em;
+      padding: .85rem 2.5rem;
+      cursor: pointer;
+      animation: coverPulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes coverPulse {
+      0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+      50% { opacity: .75; transform: translateX(-50%) scale(1.04); }
+    }
+
+    /* saat dissolve (introGone), overlay fade + scale + blur — handled inline via class .gone */
+    #cover-intro.gone {
+      opacity: 0;
+      transform: scale(1.06);
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    /* ===== CALENDAR BTN (hero) ===== */
+    .calbtn {
+      margin-top: 1.4rem;
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .8rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--burg);
+      background: transparent;
+      border: 1px solid var(--burg);
+      border-radius: 60px;
+      padding: .75rem 2rem;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+
+    .calbtn:hover {
+      background: var(--burg);
+      color: #fff;
+    }
+
+    /* ===== EVENT (Akad/Resepsi) ===== */
+    .evt {
+      margin: 1.4rem auto;
+      padding: 1rem 1.4rem;
+      max-width: 18rem;
+      border: 1px solid rgba(102, 2, 31, .25);
+      border-radius: 12px;
+      background: rgba(102, 2, 31, .04);
+    }
+
+    .evt-ic { font-size: 1.4rem; display: block; margin-bottom: .4rem; }
+    .evt-name {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 1.5rem;
+      color: var(--burg);
+      margin: 0;
+    }
+    .evt-time { font-family: var(--font-montserrat), sans-serif; font-size: .85rem; color: var(--dark); margin: .3rem 0 0; }
+
+    /* ===== WEDDING GIFT (rekening) ===== */
+    .acct {
+      max-width: 22rem;
+      margin: 1.2rem auto;
+      padding: 1rem 1.2rem;
+      background: var(--cream);
+      border-radius: 12px;
+    }
+    .acct-row { display: flex; align-items: center; justify-content: space-between; gap: .8rem; }
+    .acct-bank { text-align: left; }
+    .acct-bankname {
+      display: block;
+      color: var(--burg);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .04em;
+    }
+    .acct-num { display: block; color: var(--dark); font-size: 1.1rem; letter-spacing: .1em; margin-top: .2rem; }
+    .acct-copy {
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      color: #fff;
+      background: var(--burg);
+      border: none;
+      border-radius: 60px;
+      padding: .6rem 1.2rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .acct-an { display: block; color: var(--dark); font-size: .85rem; margin-top: .6rem; }
+    .gift-addr { color: var(--cream); font-size: 1rem; line-height: 1.7; font-style: italic; }
+
+    .gift-form { max-width: 22rem; margin: 1rem auto; text-align: left; }
+    .gift-form input, .wishform input, .wishform textarea {
+      width: 100%;
+      box-sizing: border-box;
+      margin: .45rem 0;
+      padding: .75rem .9rem;
+      border: 1px solid rgba(102, 2, 31, .3);
+      border-radius: 10px;
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .9rem;
+      background: var(--cream);
+      color: var(--dark);
+    }
+    .gift-form input:focus, .wishform input:focus, .wishform textarea:focus {
+      outline: none;
+      border-color: var(--burg);
+    }
+    .msub.w { width: 100%; margin-top: .6rem; }
+
+    /* ===== WEDDING WISH ===== */
+    .wishlist { max-width: 22rem; margin: 1.4rem auto; text-align: left; }
+    .wishcard {
+      background: rgba(102, 2, 31, .05);
+      border: 1px solid rgba(102, 2, 31, .12);
+      border-radius: 12px;
+      padding: .9rem 1.1rem;
+      margin-bottom: .7rem;
+    }
+    .wish-name { color: var(--burg); font-weight: 700; font-size: .95rem; }
+    .wish-text { color: var(--dark); font-size: .9rem; line-height: 1.55; margin: .3rem 0 0; }
+
+    .pager { display: flex; align-items: center; justify-content: center; gap: .6rem; margin: 1rem 0 1.4rem; }
+    .pager-btn, .pager-dot {
+      font-family: var(--font-montserrat), sans-serif;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid rgba(102, 2, 31, .3);
+      color: var(--burg);
+      background: transparent;
+    }
+    .pager-dot { font-size: .8rem; }
+    .pager-dot.on { background: var(--burg); color: #fff; }
+    .pager-btn:disabled { opacity: .35; cursor: default; }
+    .pager-btn:not(:disabled):hover, .pager-dot:hover { background: var(--burg); color: #fff; }
+
+    .wishform { max-width: 22rem; margin: 0 auto; text-align: left; }
+    .wishform textarea { resize: vertical; }
+
+    /* ===== FOOTER ===== */
+    .gs.u { font-size: 1.2rem; color: var(--cream); }
+    .gp.u { color: var(--cream); font-style: italic; }
+    .fnames {
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 2rem;
+      color: var(--cream);
+      margin: 1rem 0 .4rem;
+    }
+    .made { color: rgba(252, 249, 245, .7); font-size: .85rem; }
+    .wa-btn {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .8rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #fff;
+      border: 1px solid #fff;
+      border-radius: 60px;
+      padding: .8rem 2rem;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .wa-btn:hover { background: #fff; color: var(--burg); }
+
+    /* ===== GALLERY 3D (BendingGallery) ===== */
+    .gallery3d {
+      width: 100%;
+      height: 560px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
     /* ===== MUSIC BTN ===== */
     #mbtn {
       position: fixed;
@@ -914,6 +1202,10 @@
 
       /* --- SECTIONS: konten tetap ada napas kiri-kanan walau section full width --- */
       #greeting, #dresscode, #rsvp { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+      /* --- LOCATION: gambar sketsa chateau full edge-to-edge di mobile --- */
+      #location .rv { padding-left: 0 !important; padding-right: 0 !important; }
+      .vsk { width: 100%; max-width: 100%; }
 
       /* --- DRESS CODE --- */
       /* frame: 220px fix → proporsional */
