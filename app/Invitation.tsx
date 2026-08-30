@@ -41,6 +41,20 @@ export default function Invitation() {
     return () => io.disconnect();
   }, []);
 
+  // Audio autoplay sekali saat user pertama kali klik di mana aja
+  useEffect(() => {
+    const tryPlay = () => {
+      const aud = audioRef.current;
+      if (aud && !playing) {
+        aud.play().then(() => setPlaying(true)).catch(() => {});
+      }
+      document.removeEventListener("click", tryPlay);
+    };
+    document.addEventListener("click", tryPlay, { once: true });
+    return () => document.removeEventListener("click", tryPlay);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Audio autoPlay sekali saat user pertama kali klik di mana aja
   useEffect(() => {
     const tryPlay = () => {
