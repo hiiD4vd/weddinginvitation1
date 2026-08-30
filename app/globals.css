@@ -1270,7 +1270,8 @@
       .dfi { width: 48%; }
 
       /* Ladies: jangan tumpuk frame Gentlemen (margin negatif) */
-      .dpair.ladies { margin-top: 1.5rem; }
+      /* Ladies: jangan tumpuk frame — gap:3rem udah nyediain napas */
+      .dpair.ladies { margin-top: 0; }
 
       /* teks: lega & masih kebaca */
       .dtxt {
