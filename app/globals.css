@@ -889,8 +889,9 @@
         transform-origin: bottom center;
         /* kompensasi ruang kosong dari scale → garis putih di bawah bunga ilang */
         margin-bottom: calc(-280px * (1 - var(--fs)));
-        /* turunin bunga biar overlap ke section merah sedalam versi desktop/HTML lama */
-        bottom: -60px;
+        /* bunga rapi di dalam hero (bottom:0), TIDAK keluar bawah → gak kepotong
+           oleh overflow:hidden hero, dan gak ada strip putih karena ketutup bunga */
+        bottom: 0;
       }
 
       /* kunci sisa luber bunga → gak ada area kosong kanan / scroll horizontal */
