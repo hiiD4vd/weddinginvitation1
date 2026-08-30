@@ -124,17 +124,21 @@ export default function Invitation() {
     const vid = introVidRef.current;
     if (!vid) return;
     const SLOW_START = 1.6, SLOW_RATE = 0.6, FADE_START = 0.9;
-    let dissolved = false;
-    const dissolve = () => {
-      if (dissolved) return;
-      dissolved = true;
-      setIntroGone(true);
+    let fading = false;
+    const fadeOut = () => {
+      if (fading) return;
+      fading = true;
+      // tambah class .gone → CSS transition opacity/scale/blur pelan (+1.2s)
+      const el = introRef.current;
+      if (el) el.classList.add("gone");
+      // baru unmount setelah transisi selesai
+      setTimeout(() => setIntroGone(true), 1200);
     };
     const onTime = () => {
       if (!vid.duration) return;
       const remaining = vid.duration - vid.currentTime;
       if (remaining <= SLOW_START && vid.playbackRate !== SLOW_RATE) vid.playbackRate = SLOW_RATE;
-      if (remaining <= FADE_START) dissolve();
+      if (remaining <= FADE_START) fadeOut();
     };
     vid.addEventListener("timeupdate", onTime);
     vid.addEventListener("loadeddata", () => { vid.currentTime = 0; });
@@ -145,7 +149,14 @@ export default function Invitation() {
     if (introStarted) return;
     setIntroStarted(true);
     const vid = introVidRef.current;
-    if (vid) vid.play().catch(() => setIntroGone(true));
+    if (vid) {
+      vid.play().catch(() => {
+        // kalau gagal play, tetap fade pelan (gak langsung hilang)
+        const el = introRef.current;
+        if (el) el.classList.add("gone");
+        setTimeout(() => setIntroGone(true), 1200);
+      });
+    }
   };
 
   // Countdown
