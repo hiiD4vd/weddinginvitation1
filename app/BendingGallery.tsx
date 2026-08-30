@@ -581,7 +581,7 @@ export default function BendingGallery({
       appRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [items]);
 
   return (
     <div
