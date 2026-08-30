@@ -929,20 +929,22 @@
       left: 50%;
       transform: translateX(-50%);
       background: transparent;
-      border: 2px solid #fff;
-      border-radius: 60px;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, .55);
+      border-radius: 0;
       color: #fff;
-      font-family: var(--font-montserrat), sans-serif;
-      font-size: .85rem;
-      letter-spacing: .28em;
-      padding: .85rem 2.5rem;
+      font-family: var(--font-great-vibes), cursive;
+      font-size: 1.15rem;
+      letter-spacing: .12em;
+      padding: .3rem 0 .4rem;
       cursor: pointer;
-      animation: coverPulse 1.8s ease-in-out infinite;
+      opacity: .92;
+      transition: opacity .25s;
     }
 
-    @keyframes coverPulse {
-      0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
-      50% { opacity: .75; transform: translateX(-50%) scale(1.04); }
+    #cover-tap:hover {
+      opacity: 1;
+      border-bottom-color: #fff;
     }
 
     /* saat dissolve (introGone), overlay fade + scale + blur — handled inline via class .gone */
