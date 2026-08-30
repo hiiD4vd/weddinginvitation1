@@ -1280,4 +1280,8 @@
         line-height: 1.55;
       }
       .dtxt strong { font-size: .92rem; }
+
+      /* --- WISH STACK: ukuran kartu mobile (lebih kecil, gak kepotong) --- */
+      .wc-stack { max-width: 15rem; height: 300px; }
+      .wc-hint { bottom: -1.9rem; font-size: .68rem; }
     }
