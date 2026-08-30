@@ -489,12 +489,7 @@ export default function Invitation() {
     <div className="torn" style={{marginTop: "-36px", marginBottom: "-1px"}}><img src="/template-assets/Mask_group_2_1_Trace.svg" alt="" /></div>
     <div className="gallery3d">
       <BendingGallery
-        items={[
-          { image: "/template-assets/300592484d1f31590325.png", text: "Viktor & Paula" },
-          { image: "/template-assets/ChatGPT_Image_Aug_3_.png", text: "Prewedding 01" },
-          { image: "/template-assets/image-gen_1-Photoroo.png", text: "Prewedding 02" },
-          { image: "/template-assets/ChatGPT_Image_Nov_17.png", text: "Prewedding 03" },
-        ]}
+        items={galItems}
         bend={2}
       />
     </div>
