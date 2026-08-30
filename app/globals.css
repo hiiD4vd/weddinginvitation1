@@ -1115,6 +1115,62 @@
       padding: 2rem 0;
     }
 
+    /* wrapper wish galeri — sedikit lebih pendek dari galeri foto */
+    .wishgal { height: 460px; }
+
+    /* ===== WISH STACK (kartu swipe-untuk-buang) ===== */
+    .wc-wrap { margin: 1.2rem 0 2.6rem; }
+
+    .wc-stack {
+      position: relative;
+      width: 100%;
+      max-width: 18rem;
+      height: 360px;
+      margin: 0 auto;
+      perspective: 600px;
+    }
+
+    .wc-rotate {
+      position: absolute;
+      inset: 0;
+      cursor: grab;
+    }
+
+    .wc-card {
+      border-radius: 1rem;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(102, 2, 31, .18);
+      background: var(--cream);
+    }
+
+    .wc-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .wc-hint {
+      position: absolute;
+      bottom: -2.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      text-align: center;
+      font-family: var(--font-montserrat), sans-serif;
+      font-size: .75rem;
+      letter-spacing: .06em;
+      color: rgba(45, 21, 32, .55);
+      margin: 0;
+    }
+
     /* ===== MUSIC BTN ===== */
     #mbtn {
       position: fixed;
