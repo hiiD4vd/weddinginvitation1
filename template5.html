@@ -878,6 +878,40 @@
       transform: none
     }
 
+    /* ===== MOBILE FIXES (<=480px) ===== */
+    @media (max-width: 480px) {
+
+      /* --- HERO --- */
+      .hfl {
+        width: 100%;
+        margin-left: 0;
+      }
+      .hfl .r1 { width: 37%; }
+      .hfl .r2 { width: 46%; }
+      .hfl .r3 { width: 32%; }
+      .hfl .r4 { width: 60%; }
+      .hfl .w1 { width: 23%; }
+      .hfl .w2 { width: 32%; }
+      .hfl .w3 { width: 42%; }
+
+      .hero-torn img {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .hname { font-size: clamp(3.6rem, 14vw, 5.8rem); }
+      .hs { font-size: clamp(2rem, 7vw, 2.6rem); }
+
+      /* --- DRESS CODE --- */
+      .dfi { width: 48%; }
+      .dpair.ladies { margin-top: 1.5rem; }
+      .dtxt {
+        font-size: .85rem;
+        padding-top: .8rem;
+        line-height: 1.55;
+      }
+      .dtxt strong { font-size: .92rem; }
+    }
   </style>
 </head>
 
