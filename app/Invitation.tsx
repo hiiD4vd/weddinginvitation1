@@ -449,20 +449,6 @@ export default function Invitation() {
     <div className="rv" style={{textAlign: "center", padding: "2.5rem 2rem"}}>
       <span className="ltitle">Waktu &amp; Lokasi</span>
 
-      {/* AKAD NIKAH */}
-      <div className="evt">
-        <span className="evt-ic">&#9964;</span>
-        <p className="evt-name">Akad Nikah</p>
-        <p className="evt-time">Sabtu, 05 Juli 2026 · 08.00 WIB</p>
-      </div>
-
-      {/* RESEPSI */}
-      <div className="evt">
-        <span className="evt-ic">&#10024;</span>
-        <p className="evt-name">Resepsi</p>
-        <p className="evt-time">Sabtu, 05 Juli 2026 · 11.00 WIB</p>
-      </div>
-
       <p className="lvname">Gedung Bapelkes Cikarang</p>
       <p className="lvaddr">Jl. Raya Jatibening No. 47, Cikarang Pusat<br />Kabupaten Bekasi, Jawa Barat</p>
       <img src="/template-assets/image-gen_1-Photoroo.png" className="vsk" alt="Gedung Bapelkes Cikarang" />
