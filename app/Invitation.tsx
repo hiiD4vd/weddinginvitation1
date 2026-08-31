@@ -316,7 +316,7 @@ export default function Invitation() {
     </div>
     <div className="hc">
       <div className="htop rv">
-        <span className="hs">Wedding Day</span>
+        <span className="hs">Hari Bahagia</span>
         <p className="hdate">05.07.26</p>
       </div>
       <div className="hnames rv">
@@ -402,15 +402,15 @@ export default function Invitation() {
          gelombangnya overlap ke section merah greeting → tanpa strip cream di atasnya */}
     <div className="torn" style={{marginTop: "-36px", marginBottom: "-1px"}}><img src="/template-assets/Mask_group_2_1_Trace.svg" alt="" /></div>
     <div className="rv" style={{textAlign: "center", padding: "2.5rem 2rem"}}>
-      <span className="ctitle">The Celebration Begins In</span>
+      <span className="ctitle">Acara Dimulai Dalam</span>
       <div className="timer">
-        <div className="tu"><span className="tn" id="cd-d">000</span><small>Days</small></div>
+        <div className="tu"><span className="tn" id="cd-d">000</span><small>Hari</small></div>
         <span className="tc">:</span>
-        <div className="tu"><span className="tn" id="cd-h">00</span><small>Hours</small></div>
+        <div className="tu"><span className="tn" id="cd-h">00</span><small>Jam</small></div>
         <span className="tc">:</span>
-        <div className="tu"><span className="tn" id="cd-m">00</span><small>Minutes</small></div>
+        <div className="tu"><span className="tn" id="cd-m">00</span><small>Menit</small></div>
         <span className="tc">:</span>
-        <div className="tu"><span className="tn" id="cd-s">00</span><small>Seconds</small></div>
+        <div className="tu"><span className="tn" id="cd-s">00</span><small>Detik</small></div>
       </div>
       <button className="calbtn rv" onClick={saveToCalendar}>Simpan di Kalender</button>
     </div>
@@ -422,21 +422,21 @@ export default function Invitation() {
   {/* HASIL EDIT USER Tadi */}
   <section className="sb" id="schedule">
     <div style={{textAlign: "center", padding: "3rem 2rem 3.5rem"}}>
-      <span className="stitle rv">Schedule of Events</span>
+      <span className="stitle rv">Rangkaian Acara</span>
       <div className="timeline">
         <div className="te rv"><span className="tt">16:00</span>
-          <div className="tnd"><img src="/template-assets/ChatGPT_Image_Nov_17.png" alt="" /></div><span className="tl">Wedding
-            Ceremony</span>
+          <div className="tnd"><img src="/template-assets/ChatGPT_Image_Nov_17.png" alt="" /></div><span className="tl">Akad
+            Nikah</span>
         </div>
         <div className="te rv"><span className="tt">17:00</span>
-          <div className="tnd"><span className="tdm"></span></div><span className="tl">Cocktail Hour</span>
+          <div className="tnd"><span className="tdm"></span></div><span className="tl">Resepsi</span>
         </div>
         <div className="te rv"><span className="tt">19:00</span>
-          <div className="tnd"><span className="tdm"></span></div><span className="tl">Dinner</span>
+          <div className="tnd"><span className="tdm"></span></div><span className="tl">Makan Malam</span>
         </div>
         <div className="te rv"><span className="tt">20:00</span>
           <div className="tnd"><img src="/template-assets/ChatGPT_Image_Nov_17.png" alt="" /></div><span
-            className="tl">Party</span>
+            className="tl">Pesta</span>
         </div>
       </div>
     </div>
@@ -465,20 +465,20 @@ export default function Invitation() {
   {/* OUR STORY */}
   <section className="sb" id="ourstory">
     <div style={{textAlign: "center", padding: "3rem 2rem 3.5rem"}}>
-      <span className="dtitle rv">Our Story</span>
+      <span className="dtitle rv">Kisah Kami</span>
       <p className="dsub rv">Kisah perjalanan cinta kami, dari pertemuan pertama hingga langkah menuju pelaminan.</p>
       <div className="dframes">
         <div className="dpair rv">
-          <div className="dfi"><img src="/template-assets/Group_170.png" alt="First Meet" /></div>
-          <div className="dtxt"><strong>First Meet — 2019</strong>Pertama kali kami bertemu dan saling mengenal, awal dari sebuah cerita yang tak terlupakan.</div>
+          <div className="dfi"><img src="/template-assets/Group_170.png" alt="Pertama Bertemu" /></div>
+          <div className="dtxt"><strong>Pertama Bertemu — 2019</strong>Pertama kali kami bertemu dan saling mengenal, awal dari sebuah cerita yang tak terlupakan.</div>
         </div>
         <div className="dpair ladies rv">
-          <div className="dfi"><img src="/template-assets/Group_169.png" alt="Relationship" /></div>
-          <div className="dtxt"><strong>Relationship — 2021</strong>Dari teman menjadi kekasih, kami tumbuh bersama melewati suka dan duka.</div>
+          <div className="dfi"><img src="/template-assets/Group_169.png" alt="Menjalin Hubungan" /></div>
+          <div className="dtxt"><strong>Menjalin Hubungan — 2021</strong>Dari teman menjadi kekasih, kami tumbuh bersama melewati suka dan duka.</div>
         </div>
         <div className="dpair rv">
-          <div className="dfi"><img src="/template-assets/Group_170.png" alt="Engagement" /></div>
-          <div className="dtxt"><strong>Engagement — April 2026</strong>Kami memantapkan hati untuk melangkah bersama menuju jenjang yang lebih serius.</div>
+          <div className="dfi"><img src="/template-assets/Group_170.png" alt="Lamaran" /></div>
+          <div className="dtxt"><strong>Lamaran — April 2026</strong>Kami memantapkan hati untuk melangkah bersama menuju jenjang yang lebih serius.</div>
         </div>
       </div>
     </div>
@@ -499,11 +499,11 @@ export default function Invitation() {
   {/* RSVP */}
   <section className="sb" id="rsvp">
     <div className="rv" style={{textAlign: "center", padding: "3rem 2rem 0"}}>
-      <span className="rtitle">Confirm Your Attendance</span>
-      <p className="rsub">To help us prepare for a joyful celebration,<br />kindly confirm your attendance.</p>
+      <span className="rtitle">Konfirmasi Kehadiran</span>
+      <p className="rsub">Untuk membantu kami mempersiapkan hari bahagia,<br />silakan konfirmasi kehadiranmu.</p>
       <button className="rbtn" id="rbtn" onClick={openModal}>RSVP</button>
-      <span className="cls">Hope to see you there!</span>
-      <p className="cln">Viktor and Paula</p>
+      <span className="cls">Sampai jumpa di hari bahagia!</span>
+      <p className="cln">Viktor &amp; Paula</p>
     </div>
   </section>
 
@@ -511,27 +511,27 @@ export default function Invitation() {
   <div className="mo" id="modal" ref={modalRef} onClick={onModalBg}>
     <div className="mb">
       <button className="mc" id="mc" onClick={closeModal}>&#215;</button>
-      <h2>Confirm Your Attendance</h2>
-      <p className="mst">Please RSVP before March 20</p>
+      <h2>Konfirmasi Kehadiran</h2>
+      <p className="mst">Mohon konfirmasi sebelum 20 Maret</p>
       <form id="mf" onSubmit={onSubmit}>
-        <label>Your name</label>
-        <input type="text" placeholder="Your full name" required />
-        <label>Will you come?</label>
+        <label>Nama kamu</label>
+        <input type="text" placeholder="Nama lengkap" required />
+        <label>Apakah kamu akan hadir?</label>
         <div className="rg">
-          <label><input type="radio" name="att" value="yes" /> Yes, I will</label>
-          <label><input type="radio" name="att" value="no" /> Unfortunately, I can&#39;t</label>
-          <label><input type="radio" name="att" value="maybe" /> Not sure yet</label>
+          <label><input type="radio" name="att" value="yes" /> Ya, saya hadir</label>
+          <label><input type="radio" name="att" value="no" /> Maaf, saya tidak bisa</label>
+          <label><input type="radio" name="att" value="maybe" /> Masih ragu</label>
         </div>
-        <label>Which event will you attend?</label>
+        <label>Acara mana yang akan kamu hadiri?</label>
         <div className="rg">
           <label><input type="checkbox" name="ev" value="akad" /> Akad Nikah</label>
           <label><input type="checkbox" name="ev" value="resepsi" /> Resepsi</label>
         </div>
-        <label>Number of guests</label>
-        <input type="text" inputMode="numeric" placeholder="e.g. 2" />
-        <label>Your wishes</label>
-        <input type="text" placeholder="Leave a message for the couple" />
-        <button type="submit" className="msub">SUBMIT</button>
+        <label>Jumlah tamu</label>
+        <input type="text" inputMode="numeric" placeholder="mis. 2" />
+        <label>Ucapan kamu</label>
+        <input type="text" placeholder="Tulis pesan untuk kedua mempelai" />
+        <button type="submit" className="msub">KIRIM</button>
       </form>
     </div>
   </div>
@@ -539,7 +539,7 @@ export default function Invitation() {
   {/* WEDDING GIFT */}
   <section className="sb" id="gift">
     <div className="rv" style={{textAlign: "center", padding: "3rem 2rem"}}>
-      <span className="gtitle">Wedding Gift</span>
+      <span className="gtitle">Kado Pernikahan</span>
       <p className="gp">Mendoakan kami adalah hadiah terbaik. Namun jika ingin memberi tanda kasih, kami menerimanya melalui:
       </p>
 
@@ -593,7 +593,7 @@ export default function Invitation() {
   <section className="sc" id="blank1">
     <div className="torn" style={{marginTop: "-36px", marginBottom: "-1px"}}><img src="/template-assets/Mask_group_2_1_Trace.svg" alt="" /></div>
     <div className="rv" style={{textAlign: "center", padding: "3rem 2rem"}}>
-      <span className="dtitle" style={{color: "var(--burg)"}}>Wedding Wish</span>
+      <span className="dtitle" style={{color: "var(--burg)"}}>Ucapan &amp; Doa</span>
       <p className="dsub" style={{color: "var(--dark)"}}>Ucapan &amp; doa dari keluarga dan sahabat. Geser untuk melihat.</p>
 
       {/* Deck kartu ucapan — swipe buat buang, kartu berikutnya muncul */}
@@ -628,7 +628,7 @@ export default function Invitation() {
       <span className="gs u">Terima kasih atas doa &amp; hadir kalian.</span>
       <p className="gp u">Kami menanti momen istimewa bersama kalian.</p>
       <p className="fnames">Viktor &amp; Paula</p>
-      <p className="made">Made with &#9825; by <b>Dinikahan</b></p>
+      <p className="made">Dibuat dengan &#9825; oleh <b>Dinikahan</b></p>
       <a className="wa-btn" href="https://wa.me/628123456789" target="_blank" rel="noreferrer">Hubungi Panitia (WhatsApp)</a>
     </div>
   </section>
@@ -637,7 +637,7 @@ export default function Invitation() {
     <source src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Alex%20Warren%20-%20Ordinary%20Lyrics.mp3"
       type="audio/mpeg" />
   </audio>
-  <button id="mbtn" title="Toggle music" onClick={toggleMusic} style={{ opacity: playing ? 1 : 0.6 }}>
+  <button id="mbtn" title="Aktifkan musik" onClick={toggleMusic} style={{ opacity: playing ? 1 : 0.6 }}>
     <svg viewBox="0 0 24 24" width="22" height="22">
       <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
     </svg>

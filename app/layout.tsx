@@ -25,8 +25,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Viktor & Paula - Wedding Day",
-  description: "Wedding Invitation - Viktor and Paula - 05.07.2026",
+  title: "Viktor & Paula - Hari Bahagia",
+  description: "Undangan Pernikahan - Viktor dan Paula - 05.07.2026",
 };
 
 export const viewport: Viewport = {
@@ -39,7 +39,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${greatVibes.variable} ${cormorant.variable} ${montserrat.variable}`}
     >
       <body>{children}</body>
