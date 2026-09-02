@@ -50,6 +50,7 @@
       inset: 0;
       overflow: hidden;
       z-index: 0;
+      background: #3c000f;
     }
 
     #hv {

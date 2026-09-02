@@ -330,7 +330,16 @@ export default function Invitation() {
   {/* HERO */}
   <section id="hero">
     <div id="hero-inner">
-      <video id="hv" ref={hvRef} autoPlay muted loop playsInline preload="auto">
+      <video
+        id="hv"
+        ref={hvRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        onError={() => console.warn("Hero video gagal dimuat, fallback ke background maroon.")}
+      >
         <source src="/template-assets/bg_video.mp4" type="video/mp4" />
         <source src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/IMG_6230%20(1).MP4" type="video/mp4" />
       </video>
