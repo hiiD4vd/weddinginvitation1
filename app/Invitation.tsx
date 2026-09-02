@@ -9,6 +9,7 @@ export default function Invitation() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
   const introVidRef = useRef<HTMLVideoElement>(null);
+  const hvRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const [introStarted, setIntroStarted] = useState(false);
   const [introGone, setIntroGone] = useState(false);
@@ -89,6 +90,27 @@ export default function Invitation() {
     build();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wishes]);
+
+  // HERO VIDEO: force autoplay — React kadang gak nyalin atribut `muted` ke
+  // DOM, jadi browser nggak tau videonya mute → autoplay diblokir → muncul
+  // tombol play. Set `muted` via JS + panggil play() pas mount & pas visible.
+  useEffect(() => {
+    const v = hvRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    const play = () => v.play().catch(() => {});
+    play();
+    // IntersectionObserver: mulai/ulang autoplay pas hero keliatan
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { v.muted = true; play(); }
+        else { v.pause(); }
+      });
+    }, { threshold: 0.1 });
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
 
   const copyAcct = (id: string, val: string) => {
     if (navigator.clipboard) {
@@ -308,7 +330,7 @@ export default function Invitation() {
   {/* HERO */}
   <section id="hero">
     <div id="hero-inner">
-      <video id="hv" autoPlay muted loop playsInline preload="auto">
+      <video id="hv" ref={hvRef} autoPlay muted loop playsInline preload="auto">
         <source src="/template-assets/bg_video.mp4" type="video/mp4" />
         <source src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/IMG_6230%20(1).MP4" type="video/mp4" />
       </video>
