@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import BendingGallery from "./BendingGallery";
 import WishStack from "./WishStack";
+import { INTRO_FAILSAFE_MS, shouldUnlockScroll } from "./introLifecycle";
 
 export default function Invitation() {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -10,9 +11,11 @@ export default function Invitation() {
   const introRef = useRef<HTMLDivElement>(null);
   const introVidRef = useRef<HTMLVideoElement>(null);
   const hvRef = useRef<HTMLVideoElement>(null);
+  const introFadingRef = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [introStarted, setIntroStarted] = useState(false);
   const [introGone, setIntroGone] = useState(false);
+  const [heroPlaybackFailed, setHeroPlaybackFailed] = useState(false);
   const [copiedAcct, setCopiedAcct] = useState<string | null>(null);
   const [wishes, setWishes] = useState([
     { name: "Dina", text: "Selamat menempuh hidup baru! Semoga bahagia sampai kakek nenek. ❤️" },
@@ -91,28 +94,33 @@ export default function Invitation() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wishes]);
 
-  // HERO VIDEO: tunda load sampai cover (amplop) selesai, biar dua video
-  // gak rebutan bandwidth bareng di awal — baru fetch + play pas introGone.
-  // Force autoplay — React kadang gak nyalin atribut `muted` ke DOM, jadi
-  // browser nggak tau videonya mute → autoplay diblokir → muncul tombol play.
+  const playHero = useCallback(() => {
+    const video = hvRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    if (video.readyState === 0) video.load();
+    void video.play().then(() => setHeroPlaybackFailed(false)).catch(() => {
+      // iOS Low Power Mode may reject even muted playback. Keep the static
+      // poster visible instead of exposing Safari's large native play badge.
+      setHeroPlaybackFailed(true);
+    });
+  }, []);
+
+  // Keep playback tied to the opening gesture. Retrying after the intro ends is
+  // too late on iOS because the browser no longer considers it a user action.
   useEffect(() => {
     const v = hvRef.current;
-    if (!v || !introGone) return;
-    v.muted = true;
-    v.defaultMuted = true;
-    v.load();
-    const play = () => v.play().catch(() => {});
-    play();
-    // IntersectionObserver: mulai/ulang autoplay pas hero keliatan
+    if (!v || !introStarted) return;
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
-        if (e.isIntersecting) { v.muted = true; play(); }
+        if (e.isIntersecting) playHero();
         else { v.pause(); }
       });
     }, { threshold: 0.1 });
     io.observe(v);
     return () => io.disconnect();
-  }, [introGone]);
+  }, [introStarted, playHero]);
 
   const copyAcct = (id: string, val: string) => {
     if (navigator.clipboard) {
@@ -133,53 +141,63 @@ export default function Invitation() {
     (e.target as HTMLFormElement).reset();
   };
 
+  const finishIntro = useCallback(() => {
+    if (introFadingRef.current) return;
+    introFadingRef.current = true;
+    introRef.current?.classList.add("gone");
+    window.setTimeout(() => setIntroGone(true), 1200);
+  }, []);
+
   // --- Cover: video amplop terbuka, slow-mo ending + fade dissolve -> hero terlihat ---
   useEffect(() => {
-    // kunci scroll selama cover tampil
-    if (!introGone) {
+    if (!shouldUnlockScroll({ started: introStarted, gone: introGone })) {
       document.documentElement.style.overflow = "hidden";
     } else {
       document.documentElement.style.overflow = "";
     }
     return () => { document.documentElement.style.overflow = ""; };
-  }, [introGone]);
+  }, [introGone, introStarted]);
 
   useEffect(() => {
     const vid = introVidRef.current;
     if (!vid) return;
     const SLOW_START = 1.6, SLOW_RATE = 0.6, FADE_START = 0.9;
-    let fading = false;
-    const fadeOut = () => {
-      if (fading) return;
-      fading = true;
-      // tambah class .gone → CSS transition opacity/scale/blur pelan (+1.2s)
-      const el = introRef.current;
-      if (el) el.classList.add("gone");
-      // baru unmount setelah transisi selesai
-      setTimeout(() => setIntroGone(true), 1200);
-    };
     const onTime = () => {
       if (!vid.duration) return;
       const remaining = vid.duration - vid.currentTime;
       if (remaining <= SLOW_START && vid.playbackRate !== SLOW_RATE) vid.playbackRate = SLOW_RATE;
-      if (remaining <= FADE_START) fadeOut();
+      if (remaining <= FADE_START) finishIntro();
     };
+    const resetVideo = () => { vid.currentTime = 0; };
     vid.addEventListener("timeupdate", onTime);
-    vid.addEventListener("loadeddata", () => { vid.currentTime = 0; });
-    return () => vid.removeEventListener("timeupdate", onTime);
-  }, []);
+    vid.addEventListener("loadeddata", resetVideo);
+    for (const event of ["ended", "error", "stalled", "abort"]) {
+      vid.addEventListener(event, finishIntro);
+    }
+    return () => {
+      vid.removeEventListener("timeupdate", onTime);
+      vid.removeEventListener("loadeddata", resetVideo);
+      for (const event of ["ended", "error", "stalled", "abort"]) {
+        vid.removeEventListener(event, finishIntro);
+      }
+    };
+  }, [finishIntro]);
+
+  useEffect(() => {
+    if (!introStarted || introGone) return;
+    const timeout = window.setTimeout(finishIntro, INTRO_FAILSAFE_MS);
+    return () => window.clearTimeout(timeout);
+  }, [finishIntro, introGone, introStarted]);
 
   const startIntro = () => {
     if (introStarted) return;
     setIntroStarted(true);
+    playHero();
     const vid = introVidRef.current;
     if (vid) {
-      vid.play().catch(() => {
-        // kalau gagal play, tetap fade pelan (gak langsung hilang)
-        const el = introRef.current;
-        if (el) el.classList.add("gone");
-        setTimeout(() => setIntroGone(true), 1200);
-      });
+      void vid.play().catch(finishIntro);
+    } else {
+      finishIntro();
     }
   };
 
@@ -218,20 +236,6 @@ export default function Invitation() {
   }, []);
 
   // Audio autoplay sekali saat user pertama kali klik di mana aja
-  useEffect(() => {
-    const tryPlay = () => {
-      const aud = audioRef.current;
-      if (aud && !playing) {
-        aud.play().then(() => setPlaying(true)).catch(() => {});
-      }
-      document.removeEventListener("click", tryPlay);
-    };
-    document.addEventListener("click", tryPlay, { once: true });
-    return () => document.removeEventListener("click", tryPlay);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Audio autoPlay sekali saat user pertama kali klik di mana aja
   useEffect(() => {
     const tryPlay = () => {
       const aud = audioRef.current;
@@ -318,7 +322,7 @@ export default function Invitation() {
       className={introStarted ? "playing" : ""}
       onClick={startIntro}
     >
-      <video id="cover-vid" ref={introVidRef} preload="auto" playsInline muted>
+      <video id="cover-vid" ref={introVidRef} preload="metadata" playsInline muted>
         <source src="/template-assets/video%20amplop%20terbuka.mp4" type="video/mp4" />
       </video>
       {!introStarted && (
@@ -335,11 +339,13 @@ export default function Invitation() {
       <video
         id="hv"
         ref={hvRef}
+        className={heroPlaybackFailed ? "playback-failed" : undefined}
         autoPlay
         muted
         loop
         playsInline
         preload="none"
+        poster="/template-assets/hero-poster.jpg"
         onError={() => console.warn("Hero video gagal dimuat, fallback ke background maroon.")}
       >
         <source src="/template-assets/bg_video.mp4" type="video/mp4" />
@@ -404,7 +410,7 @@ export default function Invitation() {
     <div className="rv" style={{textAlign: "center", padding: "3rem 2rem"}}>
       <span className="dtitle" style={{color: "var(--burg)"}}>Profil Mempelai</span>
       <div className="dpair" style={{marginTop: "1.5rem"}}>
-        <div className="dfi"><img src="/template-assets/Group_170.png" alt="Foto mempelai pria" /></div>
+        <div className="dfi"><img src="/template-assets/Group_170.png" alt="Foto mempelai pria" loading="lazy" decoding="async" /></div>
         <div className="dtxt" style={{textAlign: "left"}}>
           <strong>Viktor Pratama</strong>
           Putra pertama dari pasangan<br />Bapak Sutrisno &amp; Ibu Rahayu
@@ -419,7 +425,7 @@ export default function Invitation() {
   <section className="sb" id="profil-wanita">
     <div className="rv" style={{textAlign: "center", padding: "3rem 2rem"}}>
       <div className="dpair ladies" style={{marginTop: "0"}}>
-        <div className="dfi"><img src="/template-assets/Group_169.png" alt="Foto mempelai wanita" /></div>
+        <div className="dfi"><img src="/template-assets/Group_169.png" alt="Foto mempelai wanita" loading="lazy" decoding="async" /></div>
         <div className="dtxt" style={{textAlign: "left"}}>
           <strong>Paula Andini</strong>
           Putri kedua dari pasangan<br />Bapak Hendra &amp; Ibu Sulastri
@@ -458,7 +464,7 @@ export default function Invitation() {
       <span className="stitle rv">Rangkaian Acara</span>
       <div className="timeline">
         <div className="te rv"><span className="tt">16:00</span>
-          <div className="tnd"><img src="/template-assets/ChatGPT_Image_Nov_17.png" alt="" /></div><span className="tl">Akad
+          <div className="tnd"><img src="/template-assets/ChatGPT_Image_Nov_17.png" alt="" loading="lazy" decoding="async" /></div><span className="tl">Akad
             Nikah</span>
         </div>
         <div className="te rv"><span className="tt">17:00</span>
@@ -468,7 +474,7 @@ export default function Invitation() {
           <div className="tnd"><span className="tdm"></span></div><span className="tl">Makan Malam</span>
         </div>
         <div className="te rv"><span className="tt">20:00</span>
-          <div className="tnd"><img src="/template-assets/ChatGPT_Image_Nov_17.png" alt="" /></div><span
+          <div className="tnd"><img src="/template-assets/ChatGPT_Image_Nov_17.png" alt="" loading="lazy" decoding="async" /></div><span
             className="tl">Pesta</span>
         </div>
       </div>
@@ -484,7 +490,7 @@ export default function Invitation() {
 
       <p className="lvname">Gedung Bapelkes Cikarang</p>
       <p className="lvaddr">Jl. Raya Jatibening No. 47, Cikarang Pusat<br />Kabupaten Bekasi, Jawa Barat</p>
-      <img src="/template-assets/image-gen_1-Photoroo.png" className="vsk" alt="Gedung Bapelkes Cikarang" />
+      <img src="/template-assets/image-gen_1-Photoroo.png" className="vsk" alt="Gedung Bapelkes Cikarang" loading="lazy" decoding="async" />
 
       <span className="dtitle rv" style={{fontSize: "1.6rem", marginTop: "1.6rem"}}>Live Streaming</span>
       <p className="ls-sub rv">Untuk yang tidak dapat hadir langsung, ikuti momen spesial kami melalui live streaming Instagram.</p>
@@ -502,15 +508,15 @@ export default function Invitation() {
       <p className="dsub rv">Kisah perjalanan cinta kami, dari pertemuan pertama hingga langkah menuju pelaminan.</p>
       <div className="dframes">
         <div className="dpair rv">
-          <div className="dfi"><img src="/template-assets/Group_170.png" alt="Pertama Bertemu" /></div>
+          <div className="dfi"><img src="/template-assets/Group_170.png" alt="Pertama Bertemu" loading="lazy" decoding="async" /></div>
           <div className="dtxt"><strong>Pertama Bertemu — 2019</strong>Pertama kali kami bertemu dan saling mengenal, awal dari sebuah cerita yang tak terlupakan.</div>
         </div>
         <div className="dpair ladies rv">
-          <div className="dfi"><img src="/template-assets/Group_169.png" alt="Menjalin Hubungan" /></div>
+          <div className="dfi"><img src="/template-assets/Group_169.png" alt="Menjalin Hubungan" loading="lazy" decoding="async" /></div>
           <div className="dtxt"><strong>Menjalin Hubungan — 2021</strong>Dari teman menjadi kekasih, kami tumbuh bersama melewati suka dan duka.</div>
         </div>
         <div className="dpair rv">
-          <div className="dfi"><img src="/template-assets/Group_170.png" alt="Lamaran" /></div>
+          <div className="dfi"><img src="/template-assets/Group_170.png" alt="Lamaran" loading="lazy" decoding="async" /></div>
           <div className="dtxt"><strong>Lamaran — April 2026</strong>Kami memantapkan hati untuk melangkah bersama menuju jenjang yang lebih serius.</div>
         </div>
       </div>

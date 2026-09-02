@@ -50,7 +50,7 @@
       inset: 0;
       overflow: hidden;
       z-index: 0;
-      background: #3c000f;
+      background: #3c000f url("/template-assets/hero-poster.jpg") center / cover no-repeat;
     }
 
     #hv {
@@ -60,6 +60,12 @@
       height: 100%;
       object-fit: cover;
       z-index: 0;
+    }
+
+    #hv.playback-failed {
+      /* Preserve the poster but suppress Safari's native autoplay badge. */
+      opacity: 0;
+      pointer-events: none;
     }
 
     .ho {

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3012",
     "build": "next build",
+    "test": "node --test app/*.test.ts",
     "start": "next start -p 3012"
   },
   "dependencies": {

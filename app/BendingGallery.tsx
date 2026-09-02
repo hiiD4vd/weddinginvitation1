@@ -386,6 +386,8 @@ class App {
   screen!: { width: number; height: number };
   viewport!: { width: number; height: number };
   raf: number = 0;
+  isRunning: boolean = false;
+  boundUpdate: () => void;
   isDown: boolean = false;
   start: number = 0;
 
@@ -405,6 +407,7 @@ class App {
     },
   ) {
     this.container = container;
+    this.boundUpdate = this.update.bind(this);
     this.scroll = { ease: 0.05, current: 0, target: 0, last: 0 };
     this.createRenderer();
     this.createCamera();
@@ -412,7 +415,6 @@ class App {
     this.onResize();
     this.createGeometry();
     this.createMedias(items, bend, textColor, borderRadius, font);
-    this.update();
     this.addEventListeners();
   }
 
@@ -518,6 +520,7 @@ class App {
   }
 
   update() {
+    if (!this.isRunning) return;
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? "right" : "left";
     if (this.medias) {
@@ -525,7 +528,18 @@ class App {
     }
     this.renderer.render({ scene: this.scene, camera: this.camera });
     this.scroll.last = this.scroll.current;
-    this.raf = window.requestAnimationFrame(this.update.bind(this));
+    this.raf = window.requestAnimationFrame(this.boundUpdate);
+  }
+
+  startRendering() {
+    if (this.isRunning) return;
+    this.isRunning = true;
+    this.update();
+  }
+
+  stopRendering() {
+    this.isRunning = false;
+    window.cancelAnimationFrame(this.raf);
   }
 
   addEventListeners() {
@@ -543,7 +557,7 @@ class App {
   }
 
   destroy() {
-    window.cancelAnimationFrame(this.raf);
+    this.stopRendering();
     this.container.removeEventListener("mousedown", this.builtInOnTouchDown);
     this.container.removeEventListener("mousemove", this.builtInOnTouchMove);
     this.container.removeEventListener("mouseup", this.builtInOnTouchUp);
@@ -568,16 +582,28 @@ export default function BendingGallery({
   const appRef = useRef<App | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
-    const app = new App(containerRef.current, { items, bend, textColor, borderRadius, font });
-    appRef.current = app;
-
-    const onResize = () => app.onResize();
-    window.addEventListener("resize", onResize);
+    const container = containerRef.current;
+    if (!container) return;
+    let onResize: (() => void) | undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (!appRef.current) {
+          const app = new App(container, { items, bend, textColor, borderRadius, font });
+          appRef.current = app;
+          onResize = () => app.onResize();
+          window.addEventListener("resize", onResize);
+        }
+        appRef.current.startRendering();
+      } else {
+        appRef.current?.stopRendering();
+      }
+    }, { rootMargin: "300px 0px" });
+    observer.observe(container);
 
     return () => {
-      window.removeEventListener("resize", onResize);
-      app.destroy();
+      observer.disconnect();
+      if (onResize) window.removeEventListener("resize", onResize);
+      appRef.current?.destroy();
       appRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
