@@ -884,6 +884,21 @@
       padding: .6rem 1.6rem;
     }
 
+    /* HOVER fix: ID-scoped biar menang dari .iglink:hover global.
+       Defaultnya teks & bg-nya udah dipaksa tetap maroon/maroon krn specificity
+       #profil-* .iglink (1 ID) MENANG atas .iglink:hover (2 class) => teks jadi
+       gak keliatan pas di-hover. Rutin berikut memastikan warna kontras saat hover. */
+    #profil-pria .iglink:hover {
+      background: var(--burg);
+      color: #fff;
+      border-color: var(--burg);
+    }
+    #profil-wanita .iglink:hover {
+      background: var(--cream);
+      color: var(--burg);
+      border-color: var(--cream);
+    }
+
     /* ===== PROFIL MEMPELAI + GOOGLE MAPS ===== */
     .ls-sub {
       font-family: var(--font-montserrat), sans-serif;
