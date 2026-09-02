@@ -91,14 +91,16 @@ export default function Invitation() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wishes]);
 
-  // HERO VIDEO: force autoplay — React kadang gak nyalin atribut `muted` ke
-  // DOM, jadi browser nggak tau videonya mute → autoplay diblokir → muncul
-  // tombol play. Set `muted` via JS + panggil play() pas mount & pas visible.
+  // HERO VIDEO: tunda load sampai cover (amplop) selesai, biar dua video
+  // gak rebutan bandwidth bareng di awal — baru fetch + play pas introGone.
+  // Force autoplay — React kadang gak nyalin atribut `muted` ke DOM, jadi
+  // browser nggak tau videonya mute → autoplay diblokir → muncul tombol play.
   useEffect(() => {
     const v = hvRef.current;
-    if (!v) return;
+    if (!v || !introGone) return;
     v.muted = true;
     v.defaultMuted = true;
+    v.load();
     const play = () => v.play().catch(() => {});
     play();
     // IntersectionObserver: mulai/ulang autoplay pas hero keliatan
@@ -110,7 +112,7 @@ export default function Invitation() {
     }, { threshold: 0.1 });
     io.observe(v);
     return () => io.disconnect();
-  }, []);
+  }, [introGone]);
 
   const copyAcct = (id: string, val: string) => {
     if (navigator.clipboard) {
@@ -337,7 +339,7 @@ export default function Invitation() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
         onError={() => console.warn("Hero video gagal dimuat, fallback ke background maroon.")}
       >
         <source src="/template-assets/bg_video.mp4" type="video/mp4" />
